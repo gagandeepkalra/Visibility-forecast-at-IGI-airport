@@ -1210,10 +1210,10 @@ void initialize()
 {
     std::ifstream stationCodeHash;
     //make sure the file is sorted by station code, as getStationData function is dependent on this fact
-    stationCodeHash.open ("./stationData.csv_to_stationDataHash/stationDataHash", std::ifstream::in);
+    stationCodeHash.open ("./stationData.csvToStationDataHash/stationDataHash", std::ifstream::in);
 
     if(!stationCodeHash.is_open()) {
-        std::cerr<<"File not found\nFile: stationDataHash\n";
+        std::cerr<<"File not found\nFile: ./stationData.csvToStationDataHash/stationDataHash\n";
         exit(EXIT_FAILURE);
     }
 
