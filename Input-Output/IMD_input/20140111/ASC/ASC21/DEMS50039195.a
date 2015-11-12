@@ -1,0 +1,164 @@
+0000013600
+393
+SMNO02 ENMI 110600 RRB
+AAXX 11061
+01218 16/// /1603 11033 21115 39971 49993 54000 60002 333 21036
+      70029 91107=
+0000014800
+394
+SMIE01 EIDB 110600 CCC
+AAXX 11061
+03973 12780 11802 11004 21004 39893 40156 51021 60022 81500
+333 21006 34103 55020 81650 92610=
+0000012000
+395
+SMTH43 VTBB 110600 RRA
+AAXX 11064
+48574 32562 80805 10296 20212 30092 40121 57026 83836
+  333 58002=
+0000010900
+396
+UANT99 KDDL 110607
+ARP VIR2C 5145N03650W 0607 F380 MS53 245/19 KT
+GVROC DDL XXW 110607 F97A
+0000011000
+397
+UANT99 KDDL 110607
+ARP EIN124 5058N04002W 0607 F370 MS56 292/35 KT
+EIEDY DDL XXW 110607 J08A
+0000011100
+398
+UANT99 KDDL 110607
+ARP FIN1990 5353N04021W 0607 F380 MS58 270/32 KT
+OHLQE QXT AOW 110607 J81A
+0000012200
+399
+SMMS31 WMKK 110600 RRA
+AAXX 11064
+48632 11266 72703 10200 20174 6///1 70162 82848 333 81706 84361 87276=
+0000008700
+400
+SATH40 VTBB 110600 RRA
+METAR VTPH 110600Z 03011KT 8000 NSC 29/20 Q1014=
+0000073500
+401
+SDTH20 VTBB 110600
+FFBB 1106/ 48300 NIL=
+FFBB 1106/ 48303 00000=
+FFBB  1106/ 48327 00000=
+FFBB  1106/ 48356 00000=
+FFBB  1106/ 48378 00000=
+FFBB 1106/ 48381 00000=
+FFBB 1106/ 48407 00000=
+FFBB 1106/ 48413 NIL=
+FFBB 1106/ 48417 00000=
+FFBB 1106/ 48432 0/0/0=
+FFBB 1106/ 48456 NIL=
+FFBB 1106/ 48475 00000=
+FFBB 1106/ 48478 00000=
+FFBB 1106/ 48517 775/3=
+FFBB  1106/ 48551 0/0/0=
+FFBB 1106/ 48565 00000=
+FFBB 1106/ 48567 NIL=
+FFBB  1106/ 48568 155/5 165/3 246/5 255/3 265/3 275/5 335/3 347/5
+357/5 367/5 435/3 445/3 575/3 655/3 675/3 755/5 765/5 775/5 855/5
+865/5 61616 15234 16123 2434 25234 264 27123 33234 36123 434 443
+57234 654 67123 75124 76134 8612=
+FFBB 1106/ 48583 0/0/0=
+0000013300
+402
+FCIN90 VABB 110600
+TAF VABB 110600Z 1109/1118 27008KT 3000 FU/HZ FEW100
+     BECMG 1113/1115 33007KT 2500 FU/HZ NSC=
+
+0000012200
+403
+SMIN90 VISM 110600
+AAXX 11064
+42081 32496 31802 10094 20028 38964 48535 83700
+  333 56400 58002 83715=
+0000218500
+404
+FXIN99 VIJP 110609
+
+<?xml version="1.0" ?>
+<arfor><station>VIJP</station><datetime>2014/01/11 05:30UTC</datetime><surfacewind>050/05 BECMG 1112/1114 VRB02KT</surfacewind><upperwinds><level><height>16000M</height><winddir>270</winddir><windspeed>85</windspeed><windtemp>-67</windtemp></level><level
+<height>4500M</height><winddir>300</winddir><windspeed>45</windspeed><windtemp>-07</windtemp></level><level><height>13500M</height><winddir>271</winddir><windspeed>22</windspeed><windtemp>-61</windtemp></level><level><height>3000M</height><winddir>300</w
+nddir><windspeed>20</windspeed><windtemp>00</windtemp></level><level><height>12000M</height><winddir>281</winddir><windspeed>40</windspeed><windtemp>-54</windtemp></level><level><height>2100M</height><winddir>330</winddir><windspeed>10</windspeed><windte
+p>04</windtemp></level><level><height>10500M</height><winddir>291</winddir><windspeed>15</windspeed><windtemp>-45</windtemp></level><level><height>1500M</height><winddir>320</winddir><windspeed>15</windspeed><windtemp>07</windtemp></level><level><height>
+000M</height><winddir>280</winddir><windspeed>90</windspeed><windtemp>-36</windtemp></level><level><height>900M</height><winddir>020</winddir><windspeed>15</windspeed><windtemp>13</windtemp></level><level><height>7500M</height><winddir>290</winddir><wind
+peed>75</windspeed><windtemp>-25</windtemp></level><level><height>600M</height><winddir>010</winddir><windspeed>05</windspeed><windtemp>15</windtemp></level><level><height>5500M</height><winddir>270</winddir><windspeed>60</windspeed><windtemp>-14</windte
+p></level><level><height>300M</height><winddir>000</winddir><windspeed>00</windspeed><windtemp>00</windtemp></level></upperwinds><weather>HZ/FU</weather><visibility>3000M BECMG 1112/1113 1500M</visibility><clouds>FEW SC/CU 1050M/1200M SCT AC 3000M/3100M<
+clouds><freezinglevel>3100M</freezinglevel><additional></additional><moonphase></moonphase><warning></warning><sunrise>--</sunrise><sunset>--</sunset><moonrise>--</moonrise><moonset>--</moonset><forecaster>RADHEYSHYAM</forecaster><validfrom>2014/01/11 06
+00UTC</validfrom><validto>2014/01/11 14:00UTC</validto></arfor>
+
+0000018100
+405
+SMIN90 VOMM 110600
+AAXX 11064
+43275 31596 39902 10276 20182 30035 40153 70511 81502
+  333 58006=
+43213 32997 39903 10280 20172 39834 40150 80008
+  333 58000=
+0000008700
+406
+UPIN90 VOKL 110600
+PPAA 61051 43346
+55392 04010 09010 13506 77999=
+
+0000013000
+407
+SMIN90 VOVZ 110600
+AAXX 11064
+43149 31496 51106 10278 20205 30162 40165 70500 84830
+333 56290 58008 84618 =
+
+0000013600
+408
+UANT99 KDDL 110607
+ARP BAW192 5604N02746W 0607 F310 5600N02000W 0635 RESNO MS56 225/86
+ KT
+GBYGE QXT AOE 110607 F87A
+0000016500
+409
+SMLC01 TLPL 110600
+AAXX 11064
+78948 11565 60810 10236 20213 30143 40151 69951 70881 86800 
+333   05200 10281 20227 59001 70078 82820 84640 90915=
+0000029200
+410
+SMAK01 KWBC 110600
+AAXX 11064
+70026 NIL=
+70133 NIL=
+70174 NIL=
+70200 NIL=
+70219 NIL=
+70231 NIL=
+70261 NIL=
+70267 NIL=
+70271 NIL=
+70273 NIL=
+70308 NIL=
+70316 NIL=
+70326 NIL=
+70340 NIL=
+70350 NIL=
+70361 NIL=
+70381 NIL=
+70398 NIL=
+70414 NIL=
+0000011100
+411
+UANT99 KDDL 110607
+ARP BAW2152 4446N02024W 0607 F380 MS64 241/81 KT
+GVIIU QXT AOE 110608 F41A
+0000025200
+412
+SMVD17 KWNB 110600 RRG
+BBXX
+46077 11061 99579 71543 46/// /3002 10016 49941 56014 90550 22200
+00043 10701 20301 3//// 40701 70007 333 91203 555 11018 22019
+30459 43006 60549 304018 313019 315022 312025 303036 304040 83006
+90500=
+00000000

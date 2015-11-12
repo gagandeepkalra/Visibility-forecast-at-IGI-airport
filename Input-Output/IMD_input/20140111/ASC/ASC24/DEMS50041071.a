@@ -1,0 +1,473 @@
+0000161200
+823
+SIIY21 LIIB 110300
+AAXX 11034
+16021 41/00 93205 11028 21056 37972 48496 52001 74544 333 89/01
+      92888=
+16022 41975 02008 11018 21040 37859 48502 54000 70140 333 92865 444
+      86191=
+16033 NIL=
+16040 NIL=
+16052 42560 62405 11064 21142 36639 47073 53001 86070 333 82330
+      84457=
+16061 42565 70000 10064 20064 39372 42817 54000 87500 333 87623=
+16098 41715 70000 10070 20052 30170 40222 56002 71022 87030 333
+      87356=
+16138 NIL=
+16148 41715 72601 10078 20054 30209 40221 58001 71042 87200 333
+      87650=
+16168 42875 11902 10070 20050 39470 42824 54000 81030 333 81357=
+16172 41550 70000 10068 20064 39925 40230 56002 71022 87500 333
+      87620=
+16179 42575 71802 10094 20052 39531 42820 54000 83110 333 83827
+      85460=
+16224 41/00 90202 10064 20042 39892 40216 57007 74544 333 89/00=
+16232 41596 42004 10102 20086 30161 40215 51001 71000 83501 333 83626
+      555 0////=
+16245 42560 50303 10106 20106 30203 40229 50001 85800 333 83820
+      85630=
+16253 41830 30105 10070 20058 30202 40214 56002 71011 83040 333
+      83358=
+16258 42965 01603 10062 20047 39212 42814 54000=
+16263 42975 02003 10078 20003 38953 48518 57002=
+16294 42798 3//01 10116 20104 30022 40216 54000 83500 333 83650 555
+      0////=
+16337 NIL=
+16344 NIL=
+16434 NIL=
+16450 41/00 92707 10062 20056 39049 48512 54000 74541 333 89/00=
+16459 42960 03206 10078 20078 30190 40226 54000=
+16546 41256 53402 10060 20040 30160 40189 58003 71011 82601 333
+      82704=
+16564 42498 40416 10134 20109 30051 40193 58003 81131 333 81815 84357
+      555 0////=
+0000013100
+824
+SNIY20 LIIB 110200 RRC
+AAXX 11024
+16550 42898 83009 10114 20081 30035 40216 54000 8707/ 333 87357 555
+      0////=
+0000011100
+825
+UANT01 CWAO 110303
+ARP DAL176 4738N05152W 0303 F370 MS67 298/54 KT
+N1604R QXS YYT 110303 F15A
+0000011100
+826
+UANT01 CWAO 110303
+ARP UAL946 4705N04511W 0303 F360 MS56 317/59 KT
+N659UA DDL XXW 110303 F30A
+0000013000
+827
+SIIN90 VICH 110300
+AAXX 11033
+42071 31994 00000 10018 20018 40202 71000
+  333 10174 20004 58010
+  555 10000=
+0000025400
+828
+FTIN31 VECC 110300
+VECC 110300Z 1106/1212 35005KT 2800 HZ NSC
+     BECMG 1112/1114 00000KT 1800 BR
+     BECMG 1122/1124 1000 MIFG
+     BECMG 1200/1202 0500 FG
+     BECMG 1204/1206 34005KT 1500 BR
+     BECMG 1207/1209 2700 HZ=
+
+0000013600
+829
+SIIN90 VIJP 110300
+AAXX 11034
+42343 31995 20504 10108 20024 40199 70500 80001
+  333 10187 20098 58024
+  555 10000=
+0000203400
+830
+SIRO21 YRBK 110300
+AAXX 11031
+15015 23/// /2502 10011 21013 39591 42794 52005 333 6///7 91004
+91106=
+15020 22997 02902 10044 21033 39973 40174 52011 333 60007 91004
+91106=
+15090 22597 32801 10022 20001 30085 40179 52012 83500 333 55300 0////
+20000
+3//// 60007 91002 91103 92600=
+15108 21/91 92728 11073 21073 38011 48438 52014 74944 333 60007 91034
+92723=
+15120 22997 02103 11011 21017 39714 40228 52004 333 55300 10239 20000
+3////
+60007 91003 91104 92611=
+15150 23/// /3401 11032 21032 39972 40195 52009 333 6///7 91002
+91102=
+15170 23/// /2504 10015 21011 39413 42803 52009 333 60007 91007
+91110=
+15200 22997 71202 10000 21003 30085 40236 50003 87070 333 60007 91002
+91102
+92600=
+15230 22597 32101 11008 21009 39944 40249 51006 83500 333 55300 10178
+20000
+3//// 60007 91001 91102=
+15260 22998 02901 10008 21036 39688 40240 52006 333 60007 91003
+91107=
+15280 22999 02928 11118 21160 37455 47991 51024 333 60007 91034=
+15292 21596 70902 10012 20010 39941 40245 50001 71022 87500 333 60007
+91003
+91103=
+15310 21995 01902 11002 21003 30111 40200 52015 71000 333 55300 10214
+20000
+3//// 60007 91003 91104 92600=
+15335 23/// /2602 10039 20018 30189 40196 53017 333 6///7 91005
+91105=
+15346 22997 03401 11005 21040 39920 40221 52007 333 60007 91003 91103
+92600=
+15350 22997 01201 10013 21012 30080 40204 52013 333 60007 91002
+91106=
+15360 22497 82506 10025 20006 30171 40186 52017 886// 333 60007 91008
+91108
+92427=
+15410 23/// /3302 10037 20008 30131 40229 50002 333 6///7 91003
+91107=
+15420 22997 02302 11006 21016 30094 40210 51015 333 55300 0//// 20000
+3////
+60007 91003 91103 92600=
+15450 22997 02204 10020 20000 39981 40224 52007 333 55300 10236 20000
+3////
+60007 91004 91105=
+15460 23/// /2503 10030 2//// 30181 40206 51013 333 6///7 91005
+91106=
+15470 23/// /2504 10011 20006 30083 40213 51007 333 60007 91007
+91108=
+15480 21496 32701 10039 20030 30185 40203 53016 71011 83600 333 60007
+91003
+91103 92446=
+0000013300
+831
+SMCN27 CWAO 110000 RRC
+AAXX 11004
+71734 15/// /1809 11038 21038 39758 40157 55009 60001
+333 11038 21110 70010=
+
+0000013300
+832
+SMCN33 CWAO 101800 RRJ
+AAXX 10184
+71376 15/// /0000 11071 21094 39950 40262 58024 60001
+333 11071 21222 70000=
+
+0000021400
+833
+SMCN33 CWAO 110000 RRH
+AAXX 11004
+71376 15/// /1001 11056 21063 39934 40245 58013 60001
+333 11052 21198 70000=
+71386 15/// /1506 11099 21139 30004 40220 58001 60001
+333 11065 21223 70000=
+
+0000012400
+834
+SIVS40 VNNN 110300
+AAXX 11031
+48863 41597 83201 10220 20207 30188 40199 50006 72582 882// 333 59003 88895=
+0000067800
+835
+SAAE31 VTBB 110300
+METAR VTBS 110300Z 08010KT 030V170 CAVOK 27/16 Q1017 NOSIG=
+METAR VTBD 110300Z 06007KT 030V110 CAVOK 28/18 Q1017 NOSIG=
+METAR VTCC 110300Z 17002KT 5000 BR FEW040 22/17 Q1021 A3016 NOSIG=
+METAR VTBU 110300Z 08006KT 7000 NSC 30/16 Q1015 A2999=
+METAR VTSS 110300Z 07010KT 9999 FEW018 BKN120 BKN300 28/21 Q1014
+           A2996 NOSIG=
+METAR VTSP 110300Z 10010KT 9999 FEW025 BKN300 28/21 Q1014 A2995
+           NOSIG=
+METAR VLVT 110300Z 12002KT 7000 NSC 23/17 Q1019 NOSIG=
+METAR VYMD 110300Z NIL=
+METAR VYYY 110300Z NIL=
+METAR VDPP 110300Z 03007KT 9000 FEW017 28/17 Q1014=
+METAR VDSR 110300Z VRB03KT CAVOK 28/17 Q1016 NOSIG=
+0000011500
+836
+SIMD20 LPMG 110300
+AAXX 11031
+08521 42960 09901 10143 20060 30100 40170 55001
+333=
+08524 NIL=
+0000891600
+837
+AXXX01 EGRR 110300
+Model Assessment and Emphasis
+Issue 110300
+1.  Changes in emphasis: Increased emphasis on sleet/hill snow  NI  next
+few hours.
+2. Emphasis:
+Today:  Chilly  start  in  N and W with some  icy  patches.   Rain  soon
+clearing from SE. Wintry showers in N/NW becoming confined to N Scotland
+by afternoon. Elsewhere dry with plenty of sunshine. Rather cold.
+Tonight: Most places dry and clear. Temperatures falling quickly, giving
+a  widespread frost. Some fog/freezing fog patches forming in  central/E
+areas, perhaps locally dense.
+Sunday:  Another cold start. Fog lifting/clearing fairly  readily,  then
+some sunshine in the E/NE before cloud and winds increase from the W  to
+bring rain later.
+
+3. Graphics
+
+
+
+4. Uncertainties and amplifying remarks
+
+Analysis and early stages
+There  are still problems in both the GM and NAE with their handling  of
+the  developing Low in mid-Atlantic, and also with the wave close to the
+Azores.  The  latter  becomes entrained within the warm  sector  of  the
+former, so neither error has any significant impact on UK weather today,
+and  just  contribute  to timing uncertainties in the  front's  progress
+eastwards on Sunday night. Of the two, the GM has the best fit.
+
+Closer  to home, the models are performing well with the showers feeding
+into  N/NW  areas - in particular the more organised showers  associated
+with  the wave/trough along the occlusion (N Wales/NW England), and  the
+larger  band associated with the primary upper trough (across  Ireland).
+Note that the organised nature of the larger band means it is likely  to
+retain  its structure and intensity inland across Northern Ireland  this
+morning;  despite  the  cloud  lifting  temperatures  RSTs  will  remain
+marginal and there is an increased likelihood of some slight snowfall (1-
+2cm  above  200mm)  and temporary sleety deposits at  lower  levels  (cf
+recent sleet at Castelderg). The smaller area of showers, and its  well-
+marked  'bulge'  of  cloud will soon move away E, but  will  be  quickly
+followed  by further showers associated with the Irish trough. So  there
+is  likely to be little break in the feed of showers into into  N  Wales
+and NW England for the rest of the night, and on balance icy patches (at
+least  at  low-level) look less likely now due to the quantity of  cloud
+here.
+
+The  structure  of  the occlusion across central/E areas  is  messy  and
+models  will not get the details right, but there is a good fit  to  the
+cloud/ppn  envelope, and a clearance from the SE around  7-8Z  is  still
+expected. Note there have been some temporarily poor aviation conditions
+on  the front itself (eg 2000 +DZ BKN001 Cardiff at 0120Z), which  could
+remain to affect more exposed locations further E this morning.
+
+A  few  fog patches likely to develop/redevelop in clearer areas  across
+the  north  this  morning, particularly NI following the  trough.  These
+locally dense and lingering until mid-morning.
+
+E4  and  GM  have been particularly keen on retaining showers  across  E
+England  until 12Z today - roughly following the trough axis east,  with
+profiles  indicating CB risk.  NAE and UKV less interested, though  they
+keep some residual cloud from the early morning shower areas propagating
+from  the  NW. Preferred solution is for these showers to survive  until
+around  10/11Z  across  the N Midlands, but to be  gone  thereafter,  so
+modifications made to E4-based fields here.
+
+Evolution
+As  the  occlusion  moves away SE, a sharpening upper trough  runs  east
+across  northern  and  some central areas this  morning,  bringing  deep
+instability  and low WBPTs across NW areas. This airmass is the  heavily
+modified  remains of the cold air outbreak across North America,  though
+by now WBPTs have increased to around PS02, with low-level snowfall very
+temporary  and  only  expected in the heavier showers.     A  short-wave
+upper  trough also runs ahead of the main upper trough to induce a minor
+wave and area of showers along the rear edge of the occlusion band, with
+these  showers  tracking from N Wales across into E England  later  this
+morning. Then as the axis of the upper trough begins to move away, there
+is  a  rapid  rise  in  contour heights from west this  afternoon  which
+quickly  builds a surface ridge and confines the wintry  showers  to  NW
+then far N Scotland.  The ridge makes only slow progress east across the
+UK  tonight and tomorrow, before a freshening and increasingly  cyclonic
+S/SE flow ushers in frontal rain from the west later on Sunday.
+
+The  upper ridge amplifies as a result of the major trough extension  in
+mid-Atlantic. This has begun to develop a complex, multi-centred Low  to
+the  NW of the Azores this morning. As mentioned above, models have been
+struggling  somewhat with the detail of this system, though luckily  the
+continued  backing  of the steering flow takes it  (and  its  associated
+heavy rain and strong winds) NNE towards Iceland tomorrow.
+
+Precipitation
+Rainfall on occlusion now very patchy, with no more than 2-4mm in the SE
+before it clears.
+
+Post-frontal  showers  into N Wales/N England at present  have  tops  to
+around FL100. These mostly light, but ISOL 2-4mm/hr possible - enough to
+give washoff. Further NW, we have ISOL CB with tops to FL180 and locally
+heavy  showers,  perhaps isol 5-8mm/hr in coastal areas,  though  rather
+less inland. This deeper instability then feeds into NW England and  the
+N Midlands for a time until mid-morning before decaying.
+
+WBFL has come down to 200-400m in north tonight, with wintry showers to
+low levels, and some snow cover especially Highland - see below. General
+WBFLs across NI are around 500m, but have lowered locally due to cold
+air ponding earlier in the night, and also through the heavier areas of
+ppn - so allow for 1-2cm above 200m and some temporary sleet/wet snow
+even to low-levels at times.
+
+Winds  See below.
+
+Temps/ice/fog
+Ice risk this morning in N and W, either from a freeze after frontal
+clearance, from showers feeding in over frozen surfaces, or where there
+is seepage from recent wet weather onto roads. Yellow warning in force -
+though note some icy patches still possible in the NE too.
+
+Max temps today near normal in S, but below/cold in parts of N Scotland
+(where the coldest air lingers) or NI (where fog may be slow to clear in
+places).
+
+A more widespread frost on Saturday night. Some fog/fzfog also likely in
+the ridge axis, especially E England. This likely to be fairly shallow,
+but may be locally dense with patches more frequent than we have seen
+for a while. NAE, UKV and E4 both look to have too much, however - and
+should just be considered as a guide to areas at risk from these
+patches. Should also lift/clear from the S late in the night as cloud
+encroaches and gradients increase, with any remaining fog in E England
+gone by mid-morning at the latest.
+
+Latest guidance for ongoing river and ground water flooding:
+The FGS is now reflecting residual river and groundwater flooding
+impacts following recent heavy rainfall.
+
+There is an ongoing MEDIUM likelihood of significant disruption in
+places during the next 5 days. The significant river flooding impacts
+are on the large, slower responding river Thames, with minor impacts on
+the river Severn. There is also, significant flooding in the Somerset
+Levels. Parts of Dorset and south Wiltshire have continuing significant
+groundwater flooding, and significant groundwater flooding is now also
+possible in east Hampshire with further minor groundwater flooding in
+parts of West Sussex.
+
+Catchments remain responsive to further rainfall, particularly in the
+south of England. At this stage however, it is not anticipated that
+rainfall during the next 5 days will add to the current disruption.
+
+For more local details on the flood risk, please refer to the
+Environment Agency web site or call the Flood Line number 0845 988 1188.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Additional Figures
+
+WBFL and precip from E4
+Extended WBFL/rain/snow fields. Less cold airmass spreading north in the
+southerly flow forward of the Atlantic frontal systems, giving some hill
+snow, though details uncertain at this stage.
+
+
+
+E4 gusts based on 10 m wind ratio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Snow depth change by 10Z Saturday from 21 UKV - from showers in cold
+airmass. Note increased signal for some hill snow NI this morning, and
+loc 5-10cm high ground in W Highlands.
+
+
+
+
+
+
+Will Lang
+Chief Forecaster
+TOO: 110300
+0000182500
+838
+SFUK43 EGRR 110300
+ã"µ–R SFUK43_EGRR_110300.CSV uò›n]∑ÖÔı˚Ëùô·…ê#ñ£éZÿ1–^äu“
+ê•Tñ.˙ˆ]CRFåÕ Ï≠≥?ëúüµÜÁÍ·ÀÌ˝ı›ˆ«„√ÕÛÁßÌÈˆÀÈ|c¶L¥móß˚”„ı”Ì√˝∑6 ÁTsˆÛª´˜ØŸ~‹l«´?ø˛Áx™‘Ò·ﬂØ.Ò¸™|˚|¸B«?˛˙Óû?æ˝Ù7Õø^\~¯pvs˝tJ±T˙r˚˘Ò·ÎÈÛ√˝Õ◊Ùˆ˝?∂wo“üØÔnü˛óÓ∞•ßÁõS∫{∏ˇ˜¯ﬂÈÒÒ·Òå˘‚ÑXSlììåÃ±'Iñ.ìÌ,î^±Ì∆ñÑvˆ%‰^ÛÓ©vàZÓêñí$Ô&àìj+Zˆñ⁄Ät¨§Í}%;B¬…‘å|œây¨ïIÄÈ^U˚r≠¿™±∆ô«jôi`÷œEºƒ
+´ìÓ¯ÀÏﬂcπ≈jNK¨1QÛù„!0È	Ã# öòƒﬁZÊΩ À´mûç;¶KÃŸI6Œ&el≤YÓë\`j…E‘Rd©cÊ”í≈&ÒFr'`YFR˘äëeú!—EÖ÷º∆^ÄçM∂öÜMFfëVÕ	´)∞ë œ40™	±‚C∫9Í±òπÏñrÒØV;U@Eë≤J∞ò4ºÑ=ZD§Ï≈#"≤së$Å9båg/UÂŸ3\F Òo…!"|ûk©UÒr≤<"‚®‡XÕ∞*094 ü£E\ökEDÃF⁄jk#"µ7õ,ŒXi’õ4õicôXØdm,ˆfÆæ◊dAÑÑ¨tåeëΩ-Œ¨8˙≠o≤åêêÒêë⁄+ôµ≈Á&	a¥hõ¬#mVrèàí&©{],Ü” ’–(VAmÙ@÷⁄±ÍG´á@J»è±Xâä,Ö˚—§p«
+⁄'‚®»é9U¬—Pc="hÁ©$≤Óm`iÀn≤˜–ÃlèMjÎŸ.´’ºâ52J±c÷ÜMäbÒ#Õ©¢›°©ÍÏm“Qí≠VÀÛ¶U,d\Î¨‰Å9“á¯°∂‰<á∆PıÜêD¡_[≤Æ≠Å5a√6K≤˘¿ ÖwZúò*ŒV–‹mJy„Úm5)(ñÜ#Q!GKß¶£∏®Ë(I¸ãê–AI‰\·Ç∏xú≠‰È7S%©§‹ˆ≤(.Ùq´‰⁄¬€Í	°7w£ﬁ•ã*ÊËm¯=BRgï»ã&@\· ãH¬¿’V∞»S«h`Ö∫&ÁCHÇLÀÖïz£ﬁ Í£$œ(Òcì‚{d+Ω`˙”Æûr]ƒ?GC¿JiÊMÍÙ“H¿ Ç;W≥fÈLÚ“p>]q4‹°ñá≤ê∞7p”Myr1ï(2±‰öà77%ƒ~x˛lpıµÁÆ∫ñêsp#ÂJ√
+dI]≠á>Àà{ÁîÊzOﬁQ±—tGAá
+À
+€Ñùë…Ù·Ÿt≠≠}∏c•¿^∏áe˙á—0‚“Â≥€z9n∞ÇûÜi 0Ω^-·ˇQc+ŒÍ	è¡ã¶^zˆYõCù·WL%vúÁ…e¥B∆_≈ÿxËWp»öÇä]ñπKÛŸw}µº†$Ñ∂Z:Á4EÖG˜6_ú.ÊCÅBé‰˘Gñ⁄πê¯„™®%ûå˘–õ&Æm`≠O±Gœ!Fπ5…èGGPJ≥9°¥ı–‹9≠Ñ&\ô∫Õ%˜	˝0ŸtŒzï1˛NC†—-KÔŸEÚÇC¥πDXÿÁp_^8d≥Í‚|ò17;§Øàª”û>ÜH˜π¡ÁΩGÁ£……‡ê>àï-z»b¶(pÌ»ÉÿËu-#}1LEπ¨ˆâ‚‰Z`x58üCÿÀ‹5…ö\£–≤ò‘Mnhß˘ﬁÂ	óî0ÿ‹lvÆﬂ›ãÚÈC˛"û”Ω™œf«kºö®:áÄRov):≈Â≈c˝ØÍ≤ m¡N˚>´ÃºœÎ#Ï/LvïáwNÍ—¨/óŒ2(‰6”B·5îΩ PNd/OÂÑ6M.ÃmMÌ¨±\û≈Rôæ%!nuÅ¡í·#/PdπŒYå¶∂O0˚∫X⁄b1ãı‰Â¶ﬂ)`\Y√¢E≠1ÁDIè&“©>‘©≤ÿg∆M){mÁ√Uy$/ëÄ¶‚ó{^pFK9[úœt¶Õ{dÌ±/ˆiëkàEQø‹åÊz“Û8YuÀqîRpys ◊.JºH{p∏Cx|m¿6ùAyN;Qúeœá"Î\Å÷Q‹ºﬁQõÒƒ(W¬hœŒ∂m|◊Ú˙Úb˚ÛW-x¯Ù”O¯‡Ìß˜Ôˇµ]^\]|x˝À≈õmÎ»’ÛóﬂNè€√Ô€Ôw◊_ˇs˙∫›ﬁˇÒ¸ﬂÔ¯_ºp∫ªçÔíûN7xãŒ˛6íøZ  
+0000083400
+839
+SIUK87 EGRR 110300
+AAXX 11034
+03080 45983 /3110 10021 21031 39888 40061 53006
+  333 83/63 555 7/093=
+03088 45983 /2812 10013 21020 39894 40060 51002
+  333 553// 20000 8//99 555 7/090=
+03144 45984 /2608 10016 21002 30040 40084 51007
+  333 553// 20000 81/62 555 7/091=
+03305 47583 /3602 10040 20011 39859 40125 51019 723//
+  333 82/27 555 7/093=
+03313 46580 /2103 10047 20041 30023 40119 53014
+  333 82/20 84/28 86/56 555 7/098=
+03321 47459 /3007 10052 20039 30108 40120 53023 762//
+  333 55300 20000 81/11 87/26 555 7/098=
+03560 45479 /2211 10074 20061 30002 40106 57010
+  333 553// 20000 81/12 83/38 86/58 555 7/097=
+03647 46233 /2412 10068 20066 39857 40113 55001
+  333 553// 20000 87/03 555 7/097=
+03684 47264 /2010 10069 20061 30013 40120 58009 723//
+  333 81/05 87/50 555 7/098=
+0000011000
+840
+UANT99 KDDL 110305
+ARP AZA60M 4856N02114W 0305 F370 MS63 231/80 KT
+EIISB QXT AOW 110305 F44A
+0000011000
+841
+UANT99 KDDL 110305
+ARP MSR986 4626N04318W 0305 F330 MS54 328/61 KT
+SUGDP QXT AOW 110305 F11A
+0000011000
+842
+UANT99 KDDL 110305
+ARP TOM117 4540N02456W 0305 F400 MS56 352/59 KT
+GTUIA QXT AOE 110305 L37A
+00000000

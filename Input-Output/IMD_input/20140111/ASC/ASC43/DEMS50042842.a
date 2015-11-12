@@ -1,0 +1,683 @@
+0000431800
+002
+NCNC40 EGRR 112100
+03002 444 00060 10030 20022=
+03005 444 00058 10029 20026=
+03008 444 00065 10034 20016=
+03017 444 00044 10019 20018=
+03026 444 00050 10005 20006=
+03031 444 00020 11001 20030=
+03034 444 00057 10022 20002=
+03037 444 00061 10008 20002=
+03039 444 01009 11029=
+03044 444 00043 10009 20040=
+03062 444 00055 10006 29999=
+03063 444 00035 11018 29999=
+03065 444 01053 11061=
+03066 444 00046 10018 29999=
+03068 444 00052 10013 20000=
+03072 444 01027 11044=
+03075 444 00049 10006 20012=
+03080 444 00050 11028 20000=
+03088 444 00048 10001 20000=
+03091 444 00056 10027 20000=
+03100 444 00074 10017 29999=
+03105 444 00073 10023 20004=
+03111 444 00058 10009 20000=
+03132 444 00055 11007 20000=
+03134 444 00062 10006 20016=
+03136 444 00063 10023 29999=
+03144 444 00047 10017 20000=
+03148 444 00003 11018=
+03153 444 00049 10018 20000=
+03155 444 00037 10008 20004=
+03158 444 00044 10005 20002=
+03162 444 00039 11015 20006=
+03166 444 00052 10021 20000=
+03171 444 00053 11013 20000=
+03204 444 00071 10019 20000=
+03210 444 00055 10031 20000=
+03212 444 00063 10008 20000=
+03214 444 00067 10026 20002=
+03220 444 00057 10009 20000=
+03224 444 00027 10003 20000=
+03225 444 00050 10000 20006=
+03226 444 00047 11013 20000=
+03227 444 01007 11026=
+03230 444 00041 11002 20002=
+03238 444 00040 10011 20000=
+03240 444 00061 10018 20000=
+03257 444 00062 10009 20000=
+03261 444 00064 10008 20000=
+03265 444 00068 11015 20000=
+03266 444 00065 10017 20000=
+03275 444 00053 10009 20000=
+03281 444 00043 11012 20000=
+03292 444 00069 10011 20000=
+03301 444 00074 10003 20000=
+03302 444 00074 10039 20000=
+03305 444 00054 10002 20000=
+03313 444 00064 10021 20000=
+03316 444 00073 10032 20010=
+03318 444 00067 10006 20002=
+03321 444 00072 11007 20000=
+03330 444 00045 10007 20004=
+03344 444 00046 10014 20002=
+03346 444 00042 10015 20000=
+03351 444 00072 10007 20028=
+03354 444 00058 10019 20000=
+03373 444 00058 10001 20000=
+03377 444 00059 10024 20000=
+03379 444 00069 10002 20000=
+03382 444 00060 10020 20000=
+03385 444 00071 10010=
+03391 444 00067 11001 20000=
+03392 444 00067 10003 20000=
+03405 444 00077 10045 20000=
+03409 444 00068 11020 20000=
+03410 444 00056 11010 20000=
+03414 444 00067 11020 20000=
+03462 444 00069 11001 20000=
+03469 444 00068 10005 20000=
+03482 444 00072 11004 20000=
+03488 444 00070 10024 20002=
+03502 444 00069 10023 29999=
+03503 444 00073 11026 20000=
+03520 444 00073 11026 20000=
+03522 444 00075 11019 20000=
+03529 444 00078 11020 20000=
+03535 444 00069 10003 20000=
+03544 444 00068 11008 20000=
+03560 444 00071 11003 20000=
+03590 444 00074 11004 20000=
+03604 444 00079 10042 20000=
+03605 444 00087 11005 20000=
+03609 444 00090 10037 20000=
+03628 444 00075 10004 20000=
+03647 444 00062 10000 20000=
+03649 444 00079 11011 20000=
+03658 444 00077 11027 20000=
+03660 444 00067 10001 20000=
+03672 444 00084 11008 20000=
+03684 444 00074 10001 20002=
+03693 444 00087 10025 20000=
+03707 444 00103 10012 20000=
+03710 444 00079 10008 20000=
+03716 444 00076 10004 20000=
+03740 444 00068 10014 20002=
+03743 444 00077 10009 20000=
+03746 444 00082 10007 20000=
+03749 444 00079 11005 20000=
+03761 444 00078 11021 20000=
+03768 444 00081 11021 20000=
+03769 444 00087 11018 20000=
+03770 444 00092 10030 20000=
+03772 444 00092 10017 20000=
+03781 444 00072 10000 20000=
+03784 444 00089 11008=
+03796 444 00092 10027=
+03797 444 00078 10016 20000=
+03803 444 00104 10072 20000=
+03808 444 00100 10054 20000=
+03809 444 00105 10034 20002=
+03823 444 00105 10029 20000=
+03827 444 00104 10035 20000=
+03839 444 00101 11013 20000=
+03840 444 00079 11006 20000=
+03853 444 00082 11018 20000=
+03857 444 00102 10048 29999=
+03862 444 00088 11017 20000=
+03866 444 00097 10051 20000=
+03872 444 00093 11004 20000=
+03874 444 00105 10023=
+03876 444 00091 11010 20000=
+03882 444 00090 10010 20000=
+03894 444 00090 10051 20000=
+03901 444 00043 11010 20002=
+03904 444 00059 11007 29999=
+03907 444 00053 10003 29999=
+03911 444 00033 11012 2////=
+03915 444 00044 10001 20000=
+03916 444 00043 10008 20000=
+03917 444 00037 10004 20000=
+03923 444 00039 11007 20000=
+0000011400
+003
+WSNZ21 NZKL 112104
+NZZC SIGMET 12 VALID 112104/112128 NZKL-
+NZZC FIR CNL SIGMET 9 111728/112128=
+0000017000
+004
+WSNZ21 NZKL 112104
+NZZC SIGMET 13 VALID 112104/120104 NZKL-
+NZZC NEW ZEALAND FIR SEV TURB FCST SW OF S4144 E17135 - S4225 E17336
+BLW FL120 STNR INTSF=
+0000021300
+005
+WSBO31 SLLP 112110
+SLLF SIGMET 01 VALID 112110/120110 SLLP-
+SLLF LA PAZ FIR EMBD TS OBS AND FCST AT 2100Z WI
+BJO/GAXOK/GESPA/TAR/PULSA/ASETO/CAM/YAC AND PUBUM AREA
+TOP FL330 MOV N 10KT INTSF=
+0000027600
+006
+WSPA03 PHFO 112109
+SIGPAP
+
+KZAK SIGMET PAPA 3 VALID 112110/120110 PHFO-
+OAKLAND OCEANIC FIR EMBD TS WI N2515 W15600 - N2500 W15330 -
+N2315 W15330 - N2215 W15515 - N2245 W15715 - N2515 W15600. CB TOPS
+TO FL460. MOV E 5KT. NC. BASED ON SAT AND LTG OBS.
+0000012600
+007
+SNVJ01 KWBC 111900 RRA
+BBXX
+DBLK 11191 99769 50345 41497 /0507 11035 21071 49943 55000 7////
+ 22281 05013=
+0000034500
+008
+SNVD01 KWBC 111900 RRU
+BBXX
+42392 11191 99272 70900 46/// ///// 1//// 91900 22200 10402 70010=
+42887 11191 99282 70885 46/// /2911 10238 20122 91900 22200 10504
+ 70018 555 11088 22096=
+42375 11191 99285 70883 46/// /2813 1//// 91900 22200 10503 70017
+ 555 11105 22114=
+42369 11191 99272 70903 46/// /2506 1//// 91900=
+0000044400
+009
+SIVB30 KWBC 112100 RRA
+BBXX
+V2AH1 11214 99307 11226 41/96 80325 10080 20005 40270 58010 75122
+ 8//// 22200 20502 3//// 4//// 5//// 80050=
+SHIP 11214 99349 11398 46/// /0310 10077 20012 40207 57018 7////
+ 8//// 22253 0//// 2////=
+3FZK3 11214 99349 11398 46/// /0310 10077 20012 40207 57018 7////
+ 8//// 22253 0//// 2////=
+52202 11211 99137 11448 46/// ///// 1//// 92100 22200 00282 10905
+ 20905 305// 41102 70027=
+0000748700
+010
+AXXX01 EGRR 112100
+Model Assessment and Emphasis
+Issue 112100
+1. Changes in emphasis: Nil sig
+
+2. Emphasis:
+Fine and clear for many tonight. Temperatures falling quickly, giving  a
+widespread  frost.  Some fog/freezing fog patches forming  -  mainly  in
+central/E areas, perhaps locally dense, clearing fairly readily tomorrow
+morning. Some sunshine in the E/NE before cloud and winds increase  from
+the  W  to  bring rain later, but dry until evening for much of  the  E.
+Feeling cold.
+
+3. Graphics
+
+
+4. Uncertainties and amplifying remarks
+
+Analysis and early stages
+There  are still some problems in the NAE/GM with their handling of  the
+developing low in mid-Atlantic - the NAE having a slight advantage  near
+the secondary centre in the Atlantic at the moment (52N, 20W), otherwise
+GM/NAE/E4 look reasonable.
+
+The  remaining shower activity is confined to the far NE of Scotland and
+still  of  a  wintry mix - we will continue to see the  shower  activity
+diminish - last of all, overnight in the N isles.
+
+Evolution
+The  mobile  upper ridge is moving is leading to marked stabilization  -
+lowering and strong hydrolapse on forecast profiles during the overnight
+period.  Adds  to  the  uncertainties  in  visibility  overnight.   Fine
+conditions with widespread frost and some patchy fog overnight.
+
+Meanwhile  complex cyclonic developments continue over the  Atlantic,  a
+secondary development entrained from low latitudes having joined  forces
+with  the  original low culminating in a single deep low by 06Z  centred
+near  55N, 25W 962hPa. Significant uncertainties in the details  of  the
+secondary development contribute to uncertainties in the timing  of  the
+associated  frontal  zone  reaching the UK tomorrow  -  particularly  as
+regards  timings of the system into northern Britain. However,  NAE  and
+E4/GM timings have converged over the last couple of runs. Ahead of  the
+main  frontal  system  the  old frontal linkage  will  become  entrained
+erratically  northeastwards  across  the  UK  as  a  weak   warm   front
+introducing  boundary layer moisture and some drizzle through  tomorrow.
+However  with the upper ridge (being forced ahead of the frontal system)
+slowly crossing tomorrow, eastern areas should remain dry until evening.
+
+Behind  the frontal system an upper trough progressively moves into  the
+UK  on  Monday bringing deep instability and showers into the  west  and
+progressively the south. A more organised band of showers is  likely  to
+move into western areas then advance eastwards.
+
+Precipitation
+Deep  instability at first in the far NE will - snow accumulations  from
+further  showers  being  restricted to above  250m,  but  continuing  to
+stabilise overnight.
+
+Rainfall amounts on the occluding system tomorrow not expected to cause
+any sig issues -  totals in the west locally of the order 10-15mm on
+upslopes - loc 20-25mm suggested by NAE and E4 over Argyll/Bute (see
+below). Extent of snow over Scotland tomorrow depends upon the degree of
+'ponding' of cold air and the forward ppn edge. There may some transient
+wet snow to relatively low levels Central Belt northwards but any
+accumulations likely to be restricted to high ground (around 400m at
+first then rising further). NAE indicates over 10cm gathering over
+Stirling and Perth/Kinross which looks excessive but allow for loc a few
+cm with sig uncertainty.
+
+Winds  See below. Gales in the N Isles easing this evening. Risk of
+gusts to gale along exposed W coasts ahead of the main front tomorrow.
+
+Temps/ice/fog
+A widespread frost tonight - giving icy patches where seepage still
+occurring and in W Scotland following late showers.  Mins loc MS3 to
+MS4C inland, and locally as low as MS6C N/NE Scotland. Some fog/fzfog
+also likely in the ridge axis, especially E England. This likely to be
+fairly shallow, but may be locally dense. Fog patches reforming readily
+in N Ireland after sunset but lifting early in the night as gradients
+increase. UKV has surprisingly little given slack gradients, wet ground
+and fog points probably just below zero.  E4 has reduced amounts
+significantly on the 12Z run - moving closer to the UKV. Slight drying
+of the dew point on the latest NAE, not hugely significant though and E4
+and NAE dew points look a good fit to observations currently. On the one
+hand we have damp surfaces - although the breeze today will have
+prevented significant moistening through stagnation, whilst on the other
+the airmass is clean.  One further complication is that f/c tephis bring
+much drier air to just above the surface overnight from the NW
+generating a hydrolapse which may act to restrict the fog formation.
+Hoar frost formation is also likely - depleting lower layers of
+moisture. Overall the fog signal in the E4 has not been modified, in
+part due to a lack of confidence in pushing it one or the other -
+suspect that with the clean air, daylight flow and strong hydrolapse fog
+will not be too extensive.
+Fog should also lift/clear from the S late in the night as cloud
+encroaches and gradients increase, with any remaining fog in E England
+lasting a bit longer but largely clearing mid-morning tomorrow. However,
+some residual stratus could persist in NE England.  Increasing cloud and
+wind, Sunday will feel decidedly cold across many areas
+Milder generally overnight Sun/Mon with air frost largely restricted to
+N Scotland and perhaps N Ireland.
+
+Latest guidance for ongoing river and ground water flooding:
+The FGS is now reflecting residual river and groundwater flooding
+impacts following recent heavy rainfall.
+There is an ongoing MEDIUM likelihood of significant disruption in
+places during the next 5 days. The significant river flooding impacts
+are on the large, slower responding river Thames, with minor impacts on
+the river Severn too. There is also significant flooding in the Somerset
+Levels.
+Parts of Dorset and south Wiltshire have continuing significant
+groundwater flooding, and significant groundwater flooding is now also
+possible in east Hampshire and parts of West Sussex.
+Uncertainties in the rainfall forecast for Wednesday and Thursday mean
+specific flood risk forecasts are not being issued at this time, but
+there is scope for some heavy rainfall resulting in further significant
+flooding from this rain, especially across southern parts of England,
+where catchments remain very responsive.
+
+For more local details on the flood risk, please refer to the
+Environment Agency web site or call the Flood Line number 0845 988 1188.
+
+Additional Figures
+
+E4 fog fraction - uncertainty re fog extent tonight
+
+
+
+
+
+
+
+
+
+
+
+WBFL and precip from E4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E4 gusts based on 10 m wind ratio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UKV mins tonight - reasonable guide
+
+
+
+
+
+
+
+
+
+
+UKV 24hr ppn to 03Z Monday - encompasses passage of frontal system.
+Useful guide.
+
+
+
+
+
+
+
+
+
+
+UKV snow depth change in 24hr to 00Z Monday - useful guide re snow
+potential over Scotland. Unlikely to cause sig issues
+
+
+
+
+Steve Willington
+Chief Forecaster
+TOO: 112110
+0000003800
+011
+SAUK53 EGRR 112100
+NIL
+0000294900
+012
+SIUK42 EGRR 112100
+AAXX 11214
+03002 47478 /3317 10044 20020 30039 40057 53030 723//
+  333 81/16 86/60 90710 91139=
+03008 46/// /2924 10061 21001 30028 40102 53022
+  333 90710 91140 91035=
+03010 46/// /3021 10060 21006 40139 52028
+  333 90710 91132=
+03014 46/// /3123 40091 53029
+  333 90710 91149=
+03031 47681 /2807 10012 21009 39838 40173 51016 741//
+  333 553// 20000 82/32 85/43=
+03034 45575 /2406 10054 20022 30155 40168 51018
+  333 83/24 84/50=
+03037 45975 /1805 10032 20012 30153 40175 51011
+  333 8//99=
+03039 46/// /2515 11017 21022=
+03044 47580 /1001 10021 20003 30058 40160 52025 781//
+  333 553// 20000 84/26 83/44=
+03062 45981 /2708 10022 21013 30157 40162 52019
+  333 553// 20000 8//99=
+03065 46/// /2732 11054 21062
+  333 90710 91141=
+03068 42680 12513 10021 21006 30155 40164 52021 81500
+  333 81645=
+03072 46/// /2816 11036 21047
+  333 90710 91137 91027=
+03080 45982 /0905 11019 21034 30000 40177 53025
+  333 8//99=
+03088 45984 /2810 10010 21020 30006 40174 52026
+  333 553// 20000 8//99=
+03105 45970 /1405 10026 20016 30173 40190 52005
+  333 8//99=
+03132 45966 /1103 11006 21010 30193 40207 52012
+  333 8//99=
+03144 45984 /2408 10023 20005 30146 40190 52019
+  333 553// 20000 8//99=
+03148 46/// /2610 11003 21009=
+03153 45970 /2804 10023 20017 30063 40205 52009
+  333 553// 20000 8//99=
+03155 46980 /2211 10020 20011 39894 40199 51012
+  333 8//99=
+03158 45984 /2306 10015 21003 30055 40196 51019
+  333 553// 20000 8//99=
+03210 46970 /2307 10032 20031 30061 40216 53012
+  333 8//99=
+03212 45/75 /1202 10016 20006 30115 40217 53010=
+03214 45972 /2201 10035 20026 30198 40217 53013
+  333 8//99=
+03220 46961 ///// 10016 20015 30174 40210 52011
+  333 8//99=
+03224 47/01 /2606 10011 20011 39855 40211 51013 733//=
+03225 46982 /2211 10020 20001 39904 40219 52013
+  333 553// 20000 8//99=
+03226 45983 /2001 11007 21019 39932 40218 51015
+  333 8//99=
+03227 46/// /2526 11023 2////
+  333 90710 91128=
+03230 46980 /2704 10006 21004 39941 40206 51016
+  333 8//99=
+03238 45363 /2710 10022 20011 30021 40199 51016
+  333 86/08=
+03261 46971 /2607 10025 20005 30177 40218 52015
+  333 83/75=
+03265 45982 /2205 10016 20002 30187 40218 51014
+  333 8//99=
+03266 46975 /2604 10026 20013 30200 40218 51014
+  333 8//99=
+03275 45975 /2407 10011 21008 30012 40211 52014
+  333 82/73=
+03281 46/// /2408 10002 21016=
+03901 45962 /1307 10013 20008 30090 40180 58007
+  333 55300 20000 88/65=
+03904 45960 /1304 10015 20007 30122 40184 58006
+  333 88/65=
+03907 45982 /2008 10033 20006 30181 40188 57002
+  333 55300 20000 87/65=
+03911 46965 /1204 10004 21003 39916 40199 58001
+  333 85/64=
+03915 46962 /1308 10021 20015 30113 40193 50002
+  333 84/64=
+03916 46983 /2205 10020 21007 30003 40198 53005
+  333 553// 20000 82/64=
+03923 45963 /1301 10007 20004 39994 40197 50001
+  333 84/64=
+0000389400
+013
+SIUK43 EGRR 112100
+AAXX 11214
+03301 46968 /1804 10015 20007 30149 40225 52009
+  333 8//99=
+03305 45983 /2311 10022 20012 39964 40234 53011
+  333 8//99=
+03313 46979 /2107 10022 20001 30133 40230 53013
+  333 8//99=
+03316 45966 /1706 10034 20010 30216 40227 53015
+  333 8//99=
+03318 46/// /1904 10015 20009=
+03321 45964 /1605 11002 21012 30219 40232 53015
+  333 55300 20000 8//99=
+03330 45971 /1703 10011 21006 39863 40236 52011
+  333 81/74=
+03344 45968 /2309 10019 20005 39894 40221 51008
+  333 8//99=
+03346 46/// /2711 10015 20006=
+03351 45966 /1503 10009 20000 30185 40229 52013
+  333 55300 20000 8//99=
+03373 46966 /2409 10001 21010 30154 40226 53012
+  333 8//99=
+03379 46969 /2614 10017 20001 30150 40230 53009
+  333 8//99=
+03382 45978 /2506 10024 20007 30207 40216 51015
+  333 55300 20000 8//99=
+03385 46964 /2206 10013 21005 30213 40223 53014
+  333 8//99=
+03391 42965 12404 10008 21005 30222 40229 53013 80001
+  333 81075=
+03392 46963 /2405 10005 21003 30222 40226 53010
+  333 81/75=
+03405 465// /1612 10055 20023 30109 40227 51007
+  333 553// 20000 82/21=
+03409 46/// /0401 11019 21024 30030 40239 53013
+  333 55300 2////=
+03410 46981 /3601 11006 21010 39786 40237 53009
+  333 553// 20000 8//99=
+03469 45962 /2207 10005 21004 30227 40231 53013
+  333 553// 20000 8//99=
+03488 45984 /2411 10026 20008 30199 40226 53014
+  333 8//99=
+03503 45977 /1301 11025 21028 30154 40235 53011
+  333 8//99=
+03520 46962 /3201 11026 21030 30112 40239 53010
+  333 553// 20000 8//99=
+03522 47956 /2901 11015 21017 30144 40241 53008 710//
+  333 8//99=
+03529 47961 /3501 11019 21029 30194 40239 53007 704//
+  333 8//99=
+03544 45965 /1801 11005 21013 30099 40235 51008
+  333 553// 20000 8//99=
+03560 45981 /2005 10001 21012 30129 40238 52007
+  333 553// 20000 8//99=
+03604 46983 /1206 10043 20022 30162 40217 58001
+  333 81/60=
+03605 46969 /0908 10022 20013 30214 40223 50001
+  333 8//99=
+03609 46/// /0407 10038 20030 30181 40235 52005=
+03628 47958 /1901 10012 20005 30164 40239 53009 710//
+  333 55300 20000 8//99=
+03647 46974 /2004 10019 20002 39972 40235 53004
+  333 553// 20000 8//99=
+03658 46963 /0601 11024 21036 30168 40242 52007
+  333 8//99=
+03660 45966 /1104 10003 21011 39986 40243 51009
+  333 8//99=
+03672 41968 31501 11007 21015 30199 40241 51009 71100 80001
+  333 83075 92610=
+03680 46/// ///// 11004 21011 30079 40242 51008
+  333 553// 20000=
+03684 45967 /2502 10003 21006 30130 40240 51014
+  333 8//99=
+03693 45962 /2704 10029 20009 30239 40242 51016
+  333 8//99=
+03707 45982 /1010 10012 21004 30217 40225 50003
+  333 8//99=
+03710 46478 /1504 10010 21008 39805 40239 53004
+  333 553// 20000 81/10=
+03743 46973 /2103 10010 21001 30078 40245 53010
+  333 8//99=
+03749 46959 /3102 11004 21011 30130 40245 52011
+  333 8//99=
+03761 42970 11304 11007 21013 30093 40243 51005 80001
+  333 55300 20000 81075=
+03768 46962 /2201 11018 21021 30159 40242 51008
+  333 8//99=
+03769 47960 /2601 11015 21022 30157 40243 51012 710//
+  333 55300 20000 8//99=
+03770 46/// ///// 10030 20004=
+03781 45963 /1302 10001 21009 30030 40245 51012
+  333 553// 20000 8//99=
+03784 46/// /2202 11008 21019 30236 40240 51013=
+03797 45967 /2706 10020 21004 30183 40246 51020
+  333 55300 20000 8//99=
+03823 45975 /1210 10037 20027 39970 40219 50001
+  333 553// 20000 8//99=
+03839 46/// ///// 11005 21011
+  333 553// 20000=
+03857 45981 /1706 10062 20029 30175 40240 52007
+  333 82/75=
+03862 47903 /3502 11016 21019 30230 40243 52009 734//
+  333 55300 20000 8//99=
+03866 46/// /0405 10055 20003 30214 40239 52008=
+03872 47960 ///// 10000 21007 30234 40239 51007 710//
+  333 553// 20000 8//99 91003=
+03876 46/// /0404 11005 21013 30240 40243 51012=
+03895 42982 11011 10036 20027 40233 51005 80001 333 81075=
+0000015100
+014
+SSVB09 RJTD 112100
+ZZYY 21709 11014 2100/ 127462 142186
+11109 0//// 1//// 2//// 30240 40240 5////
+22209 00216 10803 20084 21015=
+
+0000014500
+015
+SSVX13 LFPW 112100
+ZZYY 26556 11014 2100/ 778926 014038 6113/ 11119 40030 52006 444
+ 20130 11014 2100/ 50101 80130 80002 9/015=
+0000014500
+016
+SSVX13 LFPW 112000
+ZZYY 64519 11014 2000/ 163048 007398 6113/ 11119 40007 52011 444
+ 20130 11014 1800/ 50101 80138 80000 9/015=
+0000013900
+017
+SSVX13 LFPW 112100
+ZZYY 41738 11014 2100/ 726608 077016 6113/ 22219 00252 444 20130
+ 11014 2100/ 50101 80050 80000 9/015=
+0000014500
+018
+SSVX13 LFPW 112100
+ZZYY 64519 11014 2100/ 163048 007398 6113/ 11119 40014 52016 444
+ 20130 11014 1800/ 50101 80138 80002 9/015=
+0000011100
+019
+UANT01 CWAO 112108
+ARP QTR8135 5017N03422W 2108 F320 MS57 302/55 KT
+A7BFE QXT AOE 112108 F32A
+0000010900
+020
+UANT01 CWAO 112108
+ARP LOT26 6116N04618W 2108 F380 MS58 238/19 KT
+SPLRD QXS UAK 112108 L37A
+0000023500
+021
+UAPA01 KWBC 112109
+ARP UAL361 2754N 14758W 2059 F350 MS50 250/035KT=
+ARP ASA813 2600N 14610W 2100 F340 MS47 240/065KT=
+ARP VHVRC 1556N 17133W 2101 F380 MS48 338/050KT=
+ARP ASA804 50N 152W 2057 F350 MS58 262/101KT=
+00000000
