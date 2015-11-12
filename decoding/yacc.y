@@ -8,6 +8,7 @@
     #include <iostream>
     #include <iomanip>
     #include <string.h>
+    #include <fstream>
     
     //todo: int ex
     int yylex(void);
@@ -129,6 +130,7 @@ extern std::string sqlusername, sqlpassword, sqldbname;
 extern int toDB;
 #endif
 
+extern std::vector<std::string> fieldList;
 extern int readingNo;
 extern char *explicitDateStrYYYYMMDD;
 //extern int yy_flex_debug;
@@ -146,6 +148,7 @@ int main(int argc, char *argv[]) {
             {"readingNo", required_argument, 0, 'r'},
             {"sectionFile", required_argument, 0, 's'}, 
             {"date", required_argument, 0, 'd'},
+            {"fieldListFile", required_argument, 0, 'f'},
 #ifdef SQL
             {"sqlusername", required_argument, 0, 'u'},
             {"sqlpassword", required_argument, 0, 'p'},
@@ -159,9 +162,9 @@ int main(int argc, char *argv[]) {
         
         char c;
 #ifdef SQL
-        c = getopt_long(argc, argv, "r:s:d:u:p:b:o", long_options, &option_index);
+        c = getopt_long(argc, argv, "r:s:d:u:p:b:of:", long_options, &option_index);
 #else
-        c = getopt_long(argc, argv, "r:s:d:", long_options, &option_index);
+        c = getopt_long(argc, argv, "r:s:d:f:", long_options, &option_index);
 #endif
 
         /* Detect the end of the options. */
@@ -196,6 +199,28 @@ int main(int argc, char *argv[]) {
             explicitDateStrYYYYMMDD = (char *)malloc(sizeof(char) * 20);
             strcpy(explicitDateStrYYYYMMDD, optarg);
             break;
+            
+        case 'f':
+        {
+            std::ifstream fieldListFile(optarg);
+            if(fieldListFile.is_open() == false) {
+                cout<<"error: "<<optarg<<" not found\n";
+                abort();
+            }
+
+            string field;
+            while(fieldListFile.good()) {
+                bool wanted; string field;
+                fieldListFile>>wanted;
+                
+                std::getline(fieldListFile, field, '"'); //discard spaces
+                std::getline(fieldListFile, field, '"');
+                fieldListFile.get(); //ignore newline char
+                if(wanted)
+                    fieldList.push_back(field);
+            }
+        }
+            break;
 #ifdef SQL            
         case 0:
         case 'o':
@@ -221,6 +246,11 @@ int main(int argc, char *argv[]) {
 
     if(readingNo == -1) {
         std::cerr<<"readingNo not provided\n";
+        abort();
+    }
+    
+    if(fieldList.empty()) {
+        std::cerr << "no fields provided or fieldListFile is in worng format\n";
         abort();
     }
     

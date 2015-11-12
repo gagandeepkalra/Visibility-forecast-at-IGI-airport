@@ -18,6 +18,7 @@ std::string sqldbname, sqlusername, sqlpassword;
 int toDB = false;
 #endif
 
+std::vector<std::string> fieldList;
 char *explicitDateStrYYYYMMDD = NULL;
 
 static int toDigit(char c)
@@ -1741,109 +1742,24 @@ void decode()
 
     if(firstTime) {
         firstTime = false;
-        std::cout<<"station code, station place name, station latitude, station longitude, day, month, year, nearest hour, wind indicator, precipitation indicator, station type, cloud base of lowest cloud seen (m), visibility (km), cloud cover, wind direction, "
-                 "surface wind speed,optional wind speed, temperature (C), dewpoint (C), relative humidity (%), station pressure (hPa), sea level pressure (mb), pressure change in last 3hrs (hPa),"
-                 "pressure tendency, liquid precipitation amount Sec 1 (mm), liquid precipitation duration Sec 1 (hrs), present weather, past weather (most significant), past weather (second most significant), amount of lower(low/middle) cloud cover, low cloud type,"
-                 "middle cloud type, high cloud type, time of oberservation (hh:mm), max temp (C), min temp last 24hr (C), State of the ground without snow or measurable ice cover, snow depth (cm), state of ground,"
-                 "additional information, liquid precipitation amount Sec 2(mm), precipitation duration Sec 2 (hr), 24 hr precipitation (mm),"
-                 "cloud coverage of layer, genus of cloud, height of cloud base, Special Phenomena Group\n";
+        
+        if(fieldList.size() <= 0) {
+            std::cerr << "In function decode() fieldList size is 0\n";
+            return;
+        }
+        
+        for(int i = 0; i<fieldList.size()-1; ++i) {
+            std::cout<<"\""<<fieldList[i]<<"\",";
+            std::cerr<<fieldList[i]<<'\n';
+        }
+        std::cout<<'"'<<fieldList[fieldList.size()-1]<<"\"\n";
     }
+    
+    for(int i = 0; i<fieldList.size()-1; ++i)
+        std::cout<<'"'<<getVal(hash, fieldList[i])<<"\",";
+    std::cout<<'"'<<getVal(hash, fieldList[fieldList.size()-1])<<"\"\n";
+    
 
-    std::cout<<getVal(hash, "station code");
-    std::cout<<",";
-    std::cout<<getVal(hash, "station place name");
-    std::cout<<",";
-    std::cout<<getVal(hash, "station latitude");
-    std::cout<<",";
-    std::cout<<getVal(hash, "station longitude");
-    std::cout<<",";
-    std::cout<<getVal(hash, "day");
-    std::cout<<",";
-    std::cout<<getVal(hash, "month");
-    std::cout<<",";
-    std::cout<<getVal(hash, "year");
-    std::cout<<",";
-    std::cout<<getVal(hash, "nearest hour");
-    std::cout<<",";
-    std::cout<<getVal(hash, "wind indicator");
-    std::cout<<",";
-    std::cout<<getVal(hash, "precipitation indicator");
-    std::cout<<",";
-    std::cout<<getVal(hash, "station type");
-    std::cout<<",";
-    std::cout<<getVal(hash, "cloud base of lowest cloud seen (m)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "Visibility");
-    std::cout<<",";
-    std::cout<<getVal(hash, "cloud cover");
-    std::cout<<",";
-    std::cout<<getVal(hash, "wind direction");
-    std::cout<<",";
-    std::cout<<getVal(hash, "surface wind speed");
-    std::cout<<",";
-    std::cout<<getVal(hash, "optional wind speed");
-    std::cout<<",";
-    std::cout<<getVal(hash, "temperature (C)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "dewpoint (C)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "relative humidity (%)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "station pressure (hPa)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "sea level pressure (mb)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "pressure change in last 3hrs (hPa)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "pressure tendency");
-    std::cout<<",";
-    std::cout<<getVal(hash, "liquid precipitation amount Sec 1 (mm)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "liquid precipitation duration Sec 1 (hrs)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "present weather");
-    std::cout<<",";
-    std::cout<<getVal(hash, "past weather (most significant)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "past weather (second most significant)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "amount of lower(low/middle) cloud cover");
-    std::cout<<",";
-    std::cout<<getVal(hash, "low cloud type");
-    std::cout<<",";
-    std::cout<<getVal(hash, "middle cloud type");
-    std::cout<<",";
-    std::cout<<getVal(hash, "high cloud type");
-    std::cout<<",";
-    std::cout<<getVal(hash, "time of oberservation (hh:mm)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "max temp (C)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "min temp last 24hr (C)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "State of the ground without snow or measurable ice cover");
-    std::cout<<",";
-    std::cout<<getVal(hash, "snow depth (cm)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "state of ground");
-    std::cout<<",";
-    std::cout<<getVal(hash, "additional information");
-    std::cout<<",";
-    std::cout<<getVal(hash, "liquid precipitation amount Sec 2(mm)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "precipitation duration Sec 2 (hr)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "24 hr precipitation (mm)");
-    std::cout<<",";
-    std::cout<<getVal(hash, "cloud coverage of layer");
-    std::cout<<",";
-    std::cout<<getVal(hash, "genus of cloud");
-    std::cout<<",";
-    std::cout<<getVal(hash, "height of cloud base");
-    std::cout<<",";
-    std::cout<<getVal(hash, "Special Phenomena Group"); //no comma at end in a csv file
-
-    std::cout<<'\n';
 #ifdef SQL
 
     if(toDB) {

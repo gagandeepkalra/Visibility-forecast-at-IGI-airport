@@ -20,6 +20,9 @@
 #
 # -p,   --sqldbname
 #           database name in which relevant data is stored. note: if -DSQL was not used during compilation of the program, it will give error
+#
+# -f    --fieldListFile
+#           file that contains which fields are to be printed to output
 
 # dir where input files are present
 initialInputDir="../Input-Output/AfterCat"
@@ -30,9 +33,14 @@ sectionsDir="../Input-Output/Sections"
 # dir where output csv files are be writted
 csvDir="../Input-Output/CSV"
 
+fieldListFile="fieldListFile.txt"
+
 # check for existence of sqlDetails.config file
 if [ ! -e "sqlDetails.config" ] ;then
     echo "sqlDetails.config not found"
+    exit 1
+elif [ ! -e "fieldListFile.txt" ] ;then
+    echo "fieldListFile.txt not found"
     exit 1
 fi
 
@@ -54,7 +62,7 @@ for currDate in $dateDirs; do
         echo $currDate/$x >>stderror
         
         mkdir -p "$sectionsDir/$currDate" "$csvDir/$currDate"
-        ./a.out --readingNo=$readingNo --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+        ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
         
         #if program did not terminate successfully, echo message
         if [ $? -ne 0 ] ;then
