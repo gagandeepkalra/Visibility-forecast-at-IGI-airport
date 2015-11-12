@@ -19,6 +19,7 @@ int toDB = false;
 #endif
 
 std::vector<std::string> fieldList;
+std::vector<int> stationList;
 char *explicitDateStrYYYYMMDD = NULL;
 
 static int toDigit(char c)
@@ -1739,26 +1740,26 @@ void decode()
         decodeError = false;
         return;
     }
-
-    if(firstTime) {
-        firstTime = false;
-        
-        if(fieldList.size() <= 0) {
-            std::cerr << "In function decode() fieldList size is 0\n";
-            return;
-        }
-        
-        for(int i = 0; i<fieldList.size()-1; ++i) {
-            std::cout<<"\""<<fieldList[i]<<"\",";
-            std::cerr<<fieldList[i]<<'\n';
-        }
-        std::cout<<'"'<<fieldList[fieldList.size()-1]<<"\"\n";
-    }
     
-    for(int i = 0; i<fieldList.size()-1; ++i)
-        std::cout<<'"'<<getVal(hash, fieldList[i])<<"\",";
-    std::cout<<'"'<<getVal(hash, fieldList[fieldList.size()-1])<<"\"\n";
+    int currCode = stoi(getVal(hash, "station code"));
     
+    for(int j = 0; j<stationList.size(); ++j)
+        if(currCode == stationList[j]) { //this station's detials needs to be printed
+            
+            if(firstTime) {//print csv header
+                firstTime = false;
+                
+                for(int i = 0; i<fieldList.size()-1; ++i)
+                    std::cout<<"\""<<fieldList[i]<<"\",";
+                std::cout<<'"'<<fieldList[fieldList.size()-1]<<"\"\n";
+            }
+            
+            for(int i = 0; i<fieldList.size()-1; ++i)
+                for(int j = 0; j<stationList.size(); ++j)
+                    if(currCode == stationList[j])
+                        std::cout<<'"'<<getVal(hash, fieldList[i])<<"\",";
+            std::cout<<'"'<<getVal(hash, fieldList[fieldList.size()-1])<<"\"\n";
+        } //if(currCode == stationList[j])
 
 #ifdef SQL
 

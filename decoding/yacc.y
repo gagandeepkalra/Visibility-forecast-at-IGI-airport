@@ -131,6 +131,7 @@ extern int toDB;
 #endif
 
 extern std::vector<std::string> fieldList;
+extern std::vector<int> stationList;
 extern int readingNo;
 extern char *explicitDateStrYYYYMMDD;
 //extern int yy_flex_debug;
@@ -149,6 +150,7 @@ int main(int argc, char *argv[]) {
             {"sectionFile", required_argument, 0, 's'}, 
             {"date", required_argument, 0, 'd'},
             {"fieldListFile", required_argument, 0, 'f'},
+            {"stationListFile", required_argument, 0, 't'},
 #ifdef SQL
             {"sqlusername", required_argument, 0, 'u'},
             {"sqlpassword", required_argument, 0, 'p'},
@@ -162,9 +164,9 @@ int main(int argc, char *argv[]) {
         
         char c;
 #ifdef SQL
-        c = getopt_long(argc, argv, "r:s:d:u:p:b:of:", long_options, &option_index);
+        c = getopt_long(argc, argv, "r:s:d:u:p:b:of:t:", long_options, &option_index);
 #else
-        c = getopt_long(argc, argv, "r:s:d:f:", long_options, &option_index);
+        c = getopt_long(argc, argv, "r:s:d:f:t:", long_options, &option_index);
 #endif
 
         /* Detect the end of the options. */
@@ -204,7 +206,7 @@ int main(int argc, char *argv[]) {
         {
             std::ifstream fieldListFile(optarg);
             if(fieldListFile.is_open() == false) {
-                cout<<"error: "<<optarg<<" not found\n";
+                cout<<"error: file containing fields: "<<optarg<<" not found\n";
                 abort();
             }
 
@@ -221,6 +223,27 @@ int main(int argc, char *argv[]) {
             }
         }
             break;
+        case 't':
+        {
+            std::ifstream stationListFile(optarg);
+            if(stationListFile.is_open() == false) {
+                cout<<"error: file containing station: "<<optarg<<" not found\n";
+                abort();
+            }
+
+            string station;
+            while(stationListFile.good()) {
+                bool wanted; int station;
+                stationListFile>>wanted>>station;
+                
+                if(wanted) {
+                    stationList.push_back(station);
+                    //std::cerr <<"station wanted: "<<station;
+                }
+            }            
+        }
+            break;
+            
 #ifdef SQL            
         case 0:
         case 'o':
@@ -251,6 +274,11 @@ int main(int argc, char *argv[]) {
     
     if(fieldList.empty()) {
         std::cerr << "no fields provided or fieldListFile is in worng format\n";
+        abort();
+    }
+    
+    if(stationList.empty()) {
+        std::cerr << "no stations provided or stationListFile is in wrong format\n";
         abort();
     }
     
