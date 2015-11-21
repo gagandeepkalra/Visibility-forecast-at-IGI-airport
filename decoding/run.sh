@@ -101,5 +101,6 @@ done;
 
 #cat csv
 if [ $catCSV ] ;then
+    echo "started cat csv"
     source catCSV.sh
 fi
