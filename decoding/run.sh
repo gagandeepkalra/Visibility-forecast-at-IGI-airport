@@ -30,6 +30,9 @@
 #if 1, 48 files of one day will be concatenated to one file
 catCSV=1
 
+#enableSQL=0 disables pushing decodings to database, enableSQL=1 enables it
+enableSQL=0
+
 # dir where input files are present
 initialInputDir="../Input-Output/AfterCat"
 
@@ -43,7 +46,10 @@ fieldListFile="fieldListFile.txt"
 stationListFile="stationListFile.txt"
 
 # check for existence of sqlDetails.config file
-if [ ! -e "sqlDetails.config" ] ;then
+if [ ! -e ./a.out ] ;then
+    echo "bash: ./a.out not found. run ./build.sh first"
+    exit 1    
+elif [ ! -e "sqlDetails.config" ] ;then
     echo "bash: sqlDetails.config not found"
     exit 1
 elif [ ! -e "fieldListFile.txt" ] ;then
@@ -52,6 +58,9 @@ elif [ ! -e "fieldListFile.txt" ] ;then
 elif [ ! -e "stationListFile.txt" ] ;then
     echo "bash: stationListFile.txt not found"
     exit 1    
+elif [ ! -e "./stationData.csvToStationDataHash/stationDataHash" ] ;then
+    echo "bash: ./stationData.csvToStationDataHash/stationDataHash not found. first run ./stationData.csvToStationDataHash/build.sh"
+    exit 1        
 elif [ ! -e "catCSV.sh" ] ;then
     echo "bash: catCSV.sh not found"
     exit 1
@@ -68,14 +77,18 @@ rm -f stderror
 
 dateDirs=$(ls -v $initialInputDir)
 
-readingNo=0
 for currDate in $dateDirs; do
     fileList=$(ls -v $initialInputDir/$currDate)
+    readingNo=0
     for x in $fileList; do
         echo $currDate/$x >>stderror
         
         mkdir -p "$sectionsDir/$currDate" "$csvDir/$currDate"
-        ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+        if [ $enableSQL -eq 1 ] ;then
+            ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+        else
+            ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+        fi
         
         #if program did not terminate successfully, echo message
         if [ $? -ne 0 ] ;then

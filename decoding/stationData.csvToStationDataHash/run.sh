@@ -17,12 +17,23 @@
 
 
 # check for existence of sqlDetails.config file
-if [ ! -e "../sqlDetails.config" ] ;then
-    echo "sqlDetails.config not found"
+
+enableSQL=0
+
+if [ ! -e "./a.out" ] ;then
+    echo "./a.out not found. first run ./build.sh";
     exit 1
 fi
 
-#read config
-source ../sqlDetails.config
-
-./a.out --truncate --toDB --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname
+if [ $enableSQL -eq 1 ] ;then
+    if [ ! -e "../sqlDetails.config" ] ;then
+        echo "sqlDetails.config not found"
+        exit 1
+    fi
+    
+    #read config
+    source ../sqlDetails.config
+    ./a.out --truncate --toDB --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname
+else
+    ./a.out
+fi

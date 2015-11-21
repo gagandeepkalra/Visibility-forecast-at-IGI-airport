@@ -179,11 +179,12 @@ int main(int argc, char *argv[]) {
             try {
                 readingNo = atoi(optarg);
             } catch(std::exception &e) {
+                std::cerr<<"error: readingNo: "<<optarg<<'\n';
                 std::cerr<<"readingNo should be an integer between 0-47\n";
                 abort();
             }
             if(readingNo < 0 || readingNo > 47) {
-                std::cerr<<"Invalid readingNo argument\n"
+                std::cerr<<"Invalid readingNo argument: "<<readingNo<<"\n"
                          "readingNo should be 0-47\n";
                 abort();
             }

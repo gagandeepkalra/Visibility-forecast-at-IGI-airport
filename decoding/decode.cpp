@@ -1740,24 +1740,26 @@ void decode()
         decodeError = false;
         return;
     }
-    
+
     int currCode = stoi(getVal(hash, "station code"));
-    
+
     for(int j = 0; j<stationList.size(); ++j)
         if(currCode == stationList[j]) { //this station's detials needs to be printed
-            
+
             if(firstTime) {//print csv header
                 firstTime = false;
-                
+
                 for(int i = 0; i<fieldList.size()-1; ++i)
                     std::cout<<"\""<<fieldList[i]<<"\",";
+
                 std::cout<<'"'<<fieldList[fieldList.size()-1]<<"\"\n";
             }
-            
+
             for(int i = 0; i<fieldList.size()-1; ++i)
                 for(int j = 0; j<stationList.size(); ++j)
                     if(currCode == stationList[j])
                         std::cout<<'"'<<getVal(hash, fieldList[i])<<"\",";
+
             std::cout<<'"'<<getVal(hash, fieldList[fieldList.size()-1])<<"\"\n";
         } //if(currCode == stationList[j])
 
