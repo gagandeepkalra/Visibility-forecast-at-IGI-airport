@@ -58,23 +58,23 @@ static bool iihVV_1(std::string &w)
 
     switch (ir) {
     case 0:
-        precipitationIndicator = "\"Precipitation in groups 1 and 3\"";
+        precipitationIndicator = "Precipitation in groups 1 and 3";
         break;
 
     case 1:
-        precipitationIndicator = "\"Precipitation reported in group 1 only\"";
+        precipitationIndicator = "Precipitation reported in group 1 only";
         break;
 
     case 2:
-        precipitationIndicator = "\"Precipitation reported in group 3 only\"";
+        precipitationIndicator = "Precipitation reported in group 3 only";
         break;
 
     case 3:
-        precipitationIndicator = "\"Precipitation omitted, no precipitation\"";
+        precipitationIndicator = "Precipitation omitted, no precipitation";
         break; //if a csv file data field contains comma, the whole data should be enclosed in double quotes
 
     case 4:
-        precipitationIndicator = "\"Precipitation omitted, no observation\"";
+        precipitationIndicator = "Precipitation omitted, no observation";
         break;
 
     default:
@@ -85,31 +85,31 @@ static bool iihVV_1(std::string &w)
 
     switch (ix) {
     case 1:
-        stationType = "\"manned station -- weather group included\"";
+        stationType = "manned station -- weather group included";
         break;
 
     case 2:
-        stationType = "\"manned station -- omitted, no significant weather\"";
+        stationType = "manned station -- omitted, no significant weather";
         break;
 
     case 3:
-        stationType = "\"manned station -- omitted, no weather observation\"";
+        stationType = "manned station -- omitted, no weather observation";
         break;
 
     case 4:
-        stationType = "\"automated station -- weather group included (see automated weather codes 4677 and 4561)\"";
+        stationType = "automated station -- weather group included (see automated weather codes 4677 and 4561)";
         break;
 
     case 5:
-        stationType = "\"automated station -- omitted, no significant weather\"";
+        stationType = "automated station -- omitted, no significant weather";
         break;
 
     case 6:
-        stationType = "\"automated station -- omitted, no weather observation\"";
+        stationType = "automated station -- omitted, no weather observation";
         break;
 
     case 7:
-        stationType = "\"automated station -- weather group included (see automated weather codes 4680 and 4531)\"";
+        stationType = "automated station -- weather group included (see automated weather codes 4680 and 4531)";
         break;
 
     default:
@@ -117,53 +117,53 @@ static bool iihVV_1(std::string &w)
     }
 
     int h = toDigit(w[2]); //  can be missing
-    std::string cloudBase = "\"nunknown\"";
+    std::string cloudBase = "nunknown";
 
     if(h != -1)
         switch(h) {
         case 0:
-            cloudBase = "\"0 to 50 m\"";
+            cloudBase = "0 to 50 m";
             break;
 
         case 1:
-            cloudBase = "\"50 to 100 m\"";
+            cloudBase = "50 to 100 m";
             break;
 
         case 2:
-            cloudBase = "\"100 to 200 m\"";
+            cloudBase = "100 to 200 m";
             break;
 
         case 3:
-            cloudBase = "\"200 to 300 m\"";
+            cloudBase = "200 to 300 m";
             break;
 
         case 4:
-            cloudBase = "\"300 to 600 m\"";
+            cloudBase = "300 to 600 m";
             break;
 
         case 5:
-            cloudBase = "\"600 to 1000 m\"";
+            cloudBase = "600 to 1000 m";
             break;
 
         case 6:
-            cloudBase = "\"1000 to 1500 m\"";
+            cloudBase = "1000 to 1500 m";
             break;
 
         case 7:
-            cloudBase = "\"1500 to 2000 m\"";
+            cloudBase = "1500 to 2000 m";
             break;
 
         case 8:
-            cloudBase = "\"2000 to 2500 m\"";
+            cloudBase = "2000 to 2500 m";
             break;
 
         case 9:
-            cloudBase = "\"above 2500 m or higher or no clouds\"";
+            cloudBase = "above 2500 m or higher or no clouds";
             break;
         }
 
     int VV = toDigit(w[3]) * 10 + toDigit(w[4]);  //can be missing
-    std::string visibility = "\"unknown\"";
+    std::string visibility = "unknown";
 
     if(VV > 0) {
         if(VV >= 0 && VV <= 50)
@@ -173,45 +173,45 @@ static bool iihVV_1(std::string &w)
         else if(VV >= 81 && VV <= 88)
             visibility = std::to_string((VV -80)*5 + 30);
         else if(VV == 89)
-            visibility = "\"greater that 70\"";
+            visibility = "greater that 70";
         else if(VV == 90)
-            visibility = "\"less than 0.05\"";
+            visibility = "less than 0.05";
         else
             switch(VV) {
             case 91:
-                visibility = "\"0.05\"";
+                visibility = "0.05";
                 break;
 
             case 92:
-                visibility = "\"0.2\"";
+                visibility = "0.2";
                 break;
 
             case 93:
-                visibility = "\"0.5\"";
+                visibility = "0.5";
                 break;
 
             case 94:
-                visibility = "\"1\"";
+                visibility = "1";
                 break;
 
             case 95:
-                visibility= "\"2\"";
+                visibility= "2";
                 break;
 
             case 96:
-                visibility= "\"4\"";
+                visibility= "4";
                 break;
 
             case 97:
-                visibility= "\"10\"";
+                visibility= "10";
                 break;
 
             case 98:
-                visibility = "\"20\"";
+                visibility = "20";
                 break;
 
             case 99:
-                visibility = "\"greater than 50\"";
+                visibility = "greater than 50";
                 break;
             }
     }
@@ -227,49 +227,49 @@ static bool iihVV_1(std::string &w)
 static bool Nddff_1(std::string &w)
 {
     int N = toDigit(w[0]);
-    std::string cloudCover = "\"No measurement made\"";
+    std::string cloudCover = "No measurement made";
 
     //oktas
     if(N != -1)
         switch(N) {
         case 0:
-            cloudCover = "\"0  (clear)\"";
+            cloudCover = "0  (clear)";
             break;
 
         case 1:
-            cloudCover = "\"1/8th or less \"";
+            cloudCover = "1/8th or less ";
             break;
 
         case 2:
-            cloudCover = "\"2/8ths\"";
+            cloudCover = "2/8ths";
             break;
 
         case 3:
-            cloudCover = "\"3/8ths\"";
+            cloudCover = "3/8ths";
             break;
 
         case 4:
-            cloudCover = "\"4/8ths\"";
+            cloudCover = "4/8ths";
             break;
 
         case 5:
-            cloudCover = "\"5/8ths\"";
+            cloudCover = "5/8ths";
             break;
 
         case 6:
-            cloudCover = "\"6/8ths\"";
+            cloudCover = "6/8ths";
             break;
 
         case 7:
-            cloudCover = "\"7/8ths or more, but not 8/8\"";
+            cloudCover = "7/8ths or more, but not 8/8";
             break;
 
         case 8:
-            cloudCover = "\"8/8ths (overcast)\"";
+            cloudCover = "8/8ths (overcast)";
             break;
 
         case 9:
-            cloudCover = "\"sky obscured or cannot be estimated\"";
+            cloudCover = "sky obscured or cannot be estimated";
             break;
         }
 
@@ -277,7 +277,7 @@ static bool Nddff_1(std::string &w)
     int dd= toDigit(w[1]) *10 + toDigit(w[2]);
 
     if(dd == 99)
-        windDirection = "\" Variable, or all directions,  or unknown, or waves confused, direction indeterminate.\"";
+        windDirection = " Variable, or all directions,  or unknown, or waves confused, direction indeterminate.";
     else {
         dd *=  10; //todo: short method applied now, use correct decoding
         windDirection = std::to_string(dd);
@@ -386,39 +386,39 @@ static void _5appp_1(std::string &w)
 
     switch(a) {
     case 0:
-        pressureTendency = "\"Increasing, then decreasing -- resultant pressure same or higher\"";
+        pressureTendency = "Increasing, then decreasing -- resultant pressure same or higher";
         break;
 
     case 1:
-        pressureTendency = "\"Increasing, then steady -- resultant pressure higher\"";
+        pressureTendency = "Increasing, then steady -- resultant pressure higher";
         break;
 
     case 2:
-        pressureTendency = "\"Increasing (steadily or unsteadily) -- resultant pressure higher\"";
+        pressureTendency = "Increasing (steadily or unsteadily) -- resultant pressure higher";
         break;
 
     case 3:
-        pressureTendency = "\"Decreasing or steady, then increasing; or increasing, then increasing more rapidly -- resultant pressure higher\"";
+        pressureTendency = "Decreasing or steady, then increasing; or increasing, then increasing more rapidly -- resultant pressure higher";
         break;
 
     case 4:
-        pressureTendency = "\"Steady -- resultant pressure same\"";
+        pressureTendency = "Steady -- resultant pressure same";
         break;
 
     case 5:
-        pressureTendency = "\"Decreasing, then increasing; atmospheric pressure the same or lower than 3 hours ago\"";
+        pressureTendency = "Decreasing, then increasing; atmospheric pressure the same or lower than 3 hours ago";
         break;
 
     case 6:
-        pressureTendency = "\"Decreasing, then steady; or decreasing, then decreasing more slowly -- resultant pressure lower\"";
+        pressureTendency = "Decreasing, then steady; or decreasing, then decreasing more slowly -- resultant pressure lower";
         break;
 
     case 7:
-        pressureTendency = "\"Decreasing (steadily or unsteadily) -- resultant pressure lower\"";
+        pressureTendency = "Decreasing (steadily or unsteadily) -- resultant pressure lower";
         break;
 
     case 8:
-        pressureTendency = "\" Steady or increasing, then decreasing; or decreasing, then decreasing more rapidly. -- resultant pressure lower\"";
+        pressureTendency = " Steady or increasing, then decreasing; or decreasing, then decreasing more rapidly. -- resultant pressure lower";
         break;
     }
 
@@ -437,9 +437,9 @@ static void _6RRRt_1(std::string &w)
     if(RRR < 989)
         precipitation = std::to_string(RRR);
     else if(RRR == 989)
-        precipitation = "\"989 or more\"";
+        precipitation = "989 or more";
     else if(RRR == 990)
-        precipitation = "\"Trace\"";
+        precipitation = "Trace";
     else
         precipitation = std::to_string((RRR%10)/10.0) ;
 
@@ -449,43 +449,43 @@ static void _6RRRt_1(std::string &w)
     std::string duration;
 
     if(t == -1)
-        duration = "\"24\"";
+        duration = "24";
     else
         switch(t) {
         case 1:
-            duration = "\"6\"";
+            duration = "6";
             break;
 
         case 2:
-            duration = "\"12\"";
+            duration = "12";
             break;
 
         case 3:
-            duration = "\"18\"";
+            duration = "18";
             break;
 
         case 4:
-            duration = "\"24\"";
+            duration = "24";
             break;
 
         case 5:
-            duration = "\"1\"";
+            duration = "1";
             break;
 
         case 6:
-            duration = "\"2\"";
+            duration = "2";
             break;
 
         case 7:
-            duration = "\"3\"";
+            duration = "3";
             break;
 
         case 8:
-            duration = "\"9\"";
+            duration = "9";
             break;
 
         case 9:
-            duration = "\"15\"";
+            duration = "15";
             break;
         }
 
@@ -500,403 +500,403 @@ static void _7wwWW_1(std::string &w)
 
     switch (ww) {
     case 0:
-        presentWeather = "\"Cloud development not observed or not observable\"";
+        presentWeather = "Cloud development not observed or not observable";
         break;
 
     case 1:
-        presentWeather = "\"Clouds  generally dissolving or becoming less developed\"";
+        presentWeather = "Clouds  generally dissolving or becoming less developed";
         break;
 
     case 2:
-        presentWeather = "\"State of sky on the whole unchanged\"";
+        presentWeather = "State of sky on the whole unchanged";
         break;
 
     case 3:
-        presentWeather = "\" Clouds generally forming or developing\"";
+        presentWeather = " Clouds generally forming or developing";
         break;
 
     case 4:
-        presentWeather = "\"Visibility reduced by smoke, e.g. veldt or forest fires, industrial smoke or volcanic ashes\"";
+        presentWeather = "Visibility reduced by smoke, e.g. veldt or forest fires, industrial smoke or volcanic ashes";
         break;
 
     case 5:
-        presentWeather = "\"Haze\"";
+        presentWeather = "Haze";
         break;
 
     case 6:
-        presentWeather = "\"Widespread dust in suspension in the air, not raised by wind at or near the station at the time of observation\"";
+        presentWeather = "Widespread dust in suspension in the air, not raised by wind at or near the station at the time of observation";
         break;
 
     case 7:
-        presentWeather = "\"Dust or sand raised by wind at or near the station at the time of observation, but no well-developed dust whirl(s) or sand whirl(s), and no duststorm or sandstorm seen; or, in the case of ships, blowing spray at the station\"";
+        presentWeather = "Dust or sand raised by wind at or near the station at the time of observation, but no well-developed dust whirl(s) or sand whirl(s), and no duststorm or sandstorm seen; or, in the case of ships, blowing spray at the station";
         break;
 
     case 8:
-        presentWeather = "\"Well-developed dust whirl(s) or sand whirl(s) seen at or near the station during the preceding hour or at the time of observation, but no duststorm or sandstorm\"";
+        presentWeather = "Well-developed dust whirl(s) or sand whirl(s) seen at or near the station during the preceding hour or at the time of observation, but no duststorm or sandstorm";
         break;
 
     case 9:
-        presentWeather = "\"Duststorm or sandstorm within sight at the time of observation, or at the station during the preceding hour\"";
+        presentWeather = "Duststorm or sandstorm within sight at the time of observation, or at the station during the preceding hour";
         break;
 
     case 10:
-        presentWeather = "\"Mist\"";
+        presentWeather = "Mist";
         break;
 
     case 11:
-        presentWeather = "\"patches of shallow fog\"";
+        presentWeather = "patches of shallow fog";
         break;
 
     case 12:
-        presentWeather = "\"continuous shallow fog\""; //todo: seems incorrect
+        presentWeather = "continuous shallow fog"; //todo: seems incorrect
         break;
 
     case 13:
-        presentWeather = "\"lightning visible, no thunder heard\"";
+        presentWeather = "lightning visible, no thunder heard";
         break;
 
     case 14:
-        presentWeather = "\"precipitation within sight but not hitting ground\"";
+        presentWeather = "precipitation within sight but not hitting ground";
         break;
 
     case 15:
-        presentWeather = "\"Precipitation within sight, reaching the ground or the surface of the sea, but distant, i.e. estimated to be more than 5 km from the station\"";
+        presentWeather = "Precipitation within sight, reaching the ground or the surface of the sea, but distant, i.e. estimated to be more than 5 km from the station";
         break;
 
     case 16:
-        presentWeather = "\"Precipitation within sight, reaching the ground or the surface of the sea, near to, but not at the station\"";
+        presentWeather = "Precipitation within sight, reaching the ground or the surface of the sea, near to, but not at the station";
         break;
 
     case 17:
-        presentWeather = "\"Thunderstorm, but no precipitation at the time of observation\"";
+        presentWeather = "Thunderstorm, but no precipitation at the time of observation";
         break;
 
     case 18:
-        presentWeather = "\"squalls within sight but no precipitation falling at station\"";
+        presentWeather = "squalls within sight but no precipitation falling at station";
         break;
 
     case 19:
-        presentWeather = "\"funnel clouds within sight\"";
+        presentWeather = "funnel clouds within sight";
         break;
 
     case 20:
-        presentWeather = "\"drizzle\"";
+        presentWeather = "drizzle";
         break;
 
     case 21:
-        presentWeather = "\"rain\"";
+        presentWeather = "rain";
         break;
 
     case 22:
-        presentWeather = "\"snow\"";
+        presentWeather = "snow";
         break;
 
     case 23:
-        presentWeather = "\"rain and snow\"";
+        presentWeather = "rain and snow";
         break;
 
     case 24:
-        presentWeather = "\"freezing rain\"";
+        presentWeather = "freezing rain";
         break;
 
     case 25:
-        presentWeather = "\"rain showers\"";
+        presentWeather = "rain showers";
         break;
 
     case 26:
-        presentWeather = "\"snow showers\"";
+        presentWeather = "snow showers";
         break;
 
     case 27:
-        presentWeather = "\"hail showers\"";
+        presentWeather = "hail showers";
         break;
 
     case 28:
-        presentWeather = "\"fog\"";
+        presentWeather = "fog";
         break;
 
     case 29:
-        presentWeather = "\"thunderstorms\"";
+        presentWeather = "thunderstorms";
         break;
 
     case 30:
-        presentWeather = "\"slight to moderate duststorm, decreasing in intensity\"";
+        presentWeather = "slight to moderate duststorm, decreasing in intensity";
         break;
 
     case 31:
-        presentWeather = "\"slight to moderate duststorm, no change\"";
+        presentWeather = "slight to moderate duststorm, no change";
         break;
 
     case 32:
-        presentWeather = "\"slight to moderate duststorm, increasing in intensity\"";
+        presentWeather = "slight to moderate duststorm, increasing in intensity";
         break;
 
     case 33:
-        presentWeather = "\"severe duststorm, decreasing in intensity\"";
+        presentWeather = "severe duststorm, decreasing in intensity";
         break;
 
     case 34:
-        presentWeather = "\"severe duststorm, no change\"";
+        presentWeather = "severe duststorm, no change";
         break;
 
     case 35:
-        presentWeather = "\"severe duststorm, increasing in intensity\"";
+        presentWeather = "severe duststorm, increasing in intensity";
         break;
 
     case 36:
-        presentWeather = "\"slight to moderate drifting snow, below eye level\"";
+        presentWeather = "slight to moderate drifting snow, below eye level";
         break;
 
     case 37:
-        presentWeather = "\"heavy drifting snow, below eye level\"";
+        presentWeather = "heavy drifting snow, below eye level";
         break;
 
     case 38:
-        presentWeather = "\"slight to moderate drifting snow, above eye level\"";
+        presentWeather = "slight to moderate drifting snow, above eye level";
         break;
 
     case 39:
-        presentWeather = "\"heavy drifting snow, above eye level\"";
+        presentWeather = "heavy drifting snow, above eye level";
         break;
 
     case 40:
-        presentWeather = "\"Fog at a distance\"";
+        presentWeather = "Fog at a distance";
         break;
 
     case 41:
-        presentWeather = "\"patches of fog\"";
+        presentWeather = "patches of fog";
         break;
 
     case 42:
-        presentWeather = "\"fog, sky visible, thinning\"";
+        presentWeather = "fog, sky visible, thinning";
         break;
 
     case 43:
-        presentWeather = "\"fog, sky not visible, thinning\"";
+        presentWeather = "fog, sky not visible, thinning";
         break;
 
     case 44:
-        presentWeather = "\"fog, sky visible, no change\"";
+        presentWeather = "fog, sky visible, no change";
         break;
 
     case 45:
-        presentWeather = "\"fog, sky not visible, no change\"";
+        presentWeather = "fog, sky not visible, no change";
         break;
 
     case 46:
-        presentWeather = "\"fog, sky visible, becoming thicker\"";
+        presentWeather = "fog, sky visible, becoming thicker";
         break;
 
     case 47:
-        presentWeather = "\"fog, sky not visible, becoming thicker\"";
+        presentWeather = "fog, sky not visible, becoming thicker";
         break;
 
     case 48:
-        presentWeather = "\"fog, depositing rime, sky visible\"";
+        presentWeather = "fog, depositing rime, sky visible";
         break;
 
     case 49:
-        presentWeather = "\"fog, depositing rime, sky not visible\"";
+        presentWeather = "fog, depositing rime, sky not visible";
         break;
 
     case 50:
-        presentWeather = "\"intermittent light drizzle\"";
+        presentWeather = "intermittent light drizzle";
         break;
 
     case 51:
-        presentWeather = "\"continuous light drizzle\"";
+        presentWeather = "continuous light drizzle";
         break;
 
     case 52:
-        presentWeather = "\"intermittent moderate drizzle\"";
+        presentWeather = "intermittent moderate drizzle";
         break;
 
     case 53:
-        presentWeather = "\"continuous moderate drizzle\"";
+        presentWeather = "continuous moderate drizzle";
         break;
 
     case 54:
-        presentWeather = "\"intermittent heavy drizzle\"";
+        presentWeather = "intermittent heavy drizzle";
         break;
 
     case 55:
-        presentWeather = "\"continuous heavy drizzle\"";
+        presentWeather = "continuous heavy drizzle";
         break;
 
     case 56:
-        presentWeather = "\"light freezing drizzle\"";
+        presentWeather = "light freezing drizzle";
         break;
 
     case 57:
-        presentWeather = "\"moderate to heavy freezing drizzle\"";
+        presentWeather = "moderate to heavy freezing drizzle";
         break;
 
     case 58:
-        presentWeather = "\"light drizzle and rain\"";
+        presentWeather = "light drizzle and rain";
         break;
 
     case 59:
-        presentWeather = "\"moderate to heavy drizzle and rain\"";
+        presentWeather = "moderate to heavy drizzle and rain";
         break;
 
     case 60:
-        presentWeather = "\"intermittent light rain\"";
+        presentWeather = "intermittent light rain";
         break;
 
     case 61:
-        presentWeather = "\"continuous light rain\"";
+        presentWeather = "continuous light rain";
         break;
 
     case 62:
-        presentWeather = "\"intermittent moderate rain\"";
+        presentWeather = "intermittent moderate rain";
         break;
 
     case 63:
-        presentWeather = "\"continuous moderate rain\"";
+        presentWeather = "continuous moderate rain";
         break;
 
     case 64:
-        presentWeather = "\"intermittent heavy rain\"";
+        presentWeather = "intermittent heavy rain";
         break;
 
     case 65:
-        presentWeather = "\"continuous heavy rain\"";
+        presentWeather = "continuous heavy rain";
         break;
 
     case 66:
-        presentWeather = "\"light freezing rain\"";
+        presentWeather = "light freezing rain";
         break;
 
     case 67:
-        presentWeather = "\"moderate to heavy freezing rain\"";
+        presentWeather = "moderate to heavy freezing rain";
         break;
 
     case 68:
-        presentWeather = "\"light rain and snow\"";
+        presentWeather = "light rain and snow";
         break;
 
     case 69:
-        presentWeather = "\"moderate to heavy rain and snow\"";
+        presentWeather = "moderate to heavy rain and snow";
         break;
 
     case 70:
-        presentWeather = "\"intermittent light snow\"";
+        presentWeather = "intermittent light snow";
         break;
 
     case 71:
-        presentWeather = "\"continuous light snow\"";
+        presentWeather = "continuous light snow";
         break;
 
     case 72:
-        presentWeather = "\"intermittent moderate snow\"";
+        presentWeather = "intermittent moderate snow";
         break;
 
     case 73:
-        presentWeather = "\"continuous moderate snow\"";
+        presentWeather = "continuous moderate snow";
         break;
 
     case 74:
-        presentWeather = "\"intermittent heavy snow\"";
+        presentWeather = "intermittent heavy snow";
         break;
 
     case 75:
-        presentWeather = "\"continuous heavy snow\"";
+        presentWeather = "continuous heavy snow";
         break;
 
     case 76:
-        presentWeather = "\"diamond dust\"";
+        presentWeather = "diamond dust";
         break;
 
     case 77:
-        presentWeather = "\"snow grains\"";
+        presentWeather = "snow grains";
         break;
 
     case 78:
-        presentWeather = "\"snow crystals\"";
+        presentWeather = "snow crystals";
         break;
 
     case 79:
-        presentWeather = "\"ice pellets\"";
+        presentWeather = "ice pellets";
         break;
 
     case 80:
-        presentWeather = "\"light rain showers\"";
+        presentWeather = "light rain showers";
         break;
 
     case 81:
-        presentWeather = "\"moderate to heavy rain showers\"";
+        presentWeather = "moderate to heavy rain showers";
         break;
 
     case 82:
-        presentWeather = "\"violent rain showers\"";
+        presentWeather = "violent rain showers";
         break;
 
     case 83:
-        presentWeather = "\"light rain and snow showers\"";
+        presentWeather = "light rain and snow showers";
         break;
 
     case 84:
-        presentWeather = "\"moderate to heavy rain and snow showers\"";
+        presentWeather = "moderate to heavy rain and snow showers";
         break;
 
     case 85:
-        presentWeather = "\"light snow showers\"";
+        presentWeather = "light snow showers";
         break;
 
     case 86:
-        presentWeather = "\"moderate to heavy snow showers\"";
+        presentWeather = "moderate to heavy snow showers";
         break;
 
     case 87:
-        presentWeather = "\"light snow/ice pellet showers\"";
+        presentWeather = "light snow/ice pellet showers";
         break;
 
     case 88:
-        presentWeather = "\"moderate to heavy snow/ice pellet showers\"";
+        presentWeather = "moderate to heavy snow/ice pellet showers";
         break;
 
     case 89:
-        presentWeather = "\"light hail showers\"";
+        presentWeather = "light hail showers";
         break;
 
     case 90:
-        presentWeather = "\"moderate to heavy hail showers\"";
+        presentWeather = "moderate to heavy hail showers";
         break;
 
     case 91:
-        presentWeather = "\"thunderstorm in past hour, currently only light rain\"";
+        presentWeather = "thunderstorm in past hour, currently only light rain";
         break;
 
     case 92:
-        presentWeather = "\"thunderstorm in past hour, currently only moderate to heavy rain\"";
+        presentWeather = "thunderstorm in past hour, currently only moderate to heavy rain";
         break;
 
     case 93:
-        presentWeather = "\"thunderstorm in past hour, currently only light snow or rain/snow mix\"";
+        presentWeather = "thunderstorm in past hour, currently only light snow or rain/snow mix";
         break;
 
     case 94:
-        presentWeather = "\"thunderstorm in past hour, currently only moderate to heavy snow or rain/snow mix\"";
+        presentWeather = "thunderstorm in past hour, currently only moderate to heavy snow or rain/snow mix";
         break;
 
     case 95:
-        presentWeather = "\"light to moderate thunderstorm\"";
+        presentWeather = "light to moderate thunderstorm";
         break;
 
     case 96:
-        presentWeather = "\"light to moderate thunderstorm with hail\"";
+        presentWeather = "light to moderate thunderstorm with hail";
         break;
 
     case 97:
-        presentWeather = "\"heavy thunderstorm\"";
+        presentWeather = "heavy thunderstorm";
         break;
 
     case 98:
-        presentWeather = "\"heavy thunderstorm with duststorm\"";
+        presentWeather = "heavy thunderstorm with duststorm";
         break;
 
     case 99:
-        presentWeather = "\"heavy thunderstorm with hail\"";
+        presentWeather = "heavy thunderstorm with hail";
         break;
     }
 
@@ -905,43 +905,43 @@ static void _7wwWW_1(std::string &w)
 
     switch (W1) {
     case 0:
-        type1 = "\"cloud covering less than half of sky\"";
+        type1 = "cloud covering less than half of sky";
         break;
 
     case 1:
-        type1 = "\"cloud covering more than half of sky during part of period and more than half during part of period\"";
+        type1 = "cloud covering more than half of sky during part of period and more than half during part of period";
         break;
 
     case 2:
-        type1 = "\"cloud covering more than half of sky\"";
+        type1 = "cloud covering more than half of sky";
         break;
 
     case 3:
-        type1 = "\"sandstorm, duststorm or blowing snow\"";
+        type1 = "sandstorm, duststorm or blowing snow";
         break;
 
     case 4:
-        type1 = "\"fog or ice fog orthick haze\"";
+        type1 = "fog or ice fog orthick haze";
         break;
 
     case 5:
-        type1 = "\"drizzle\"";
+        type1 = "drizzle";
         break;
 
     case 6:
-        type1 = "\"rain\"";
+        type1 = "rain";
         break;
 
     case 7:
-        type1 = "\"snow or mixed rain and snow\"";
+        type1 = "snow or mixed rain and snow";
         break;
 
     case 8:
-        type1 = "\"showers\"";
+        type1 = "showers";
         break;
 
     case 9:
-        type1 = "\"Thunderstorm(s) with or without precipitation\"";
+        type1 = "Thunderstorm(s) with or without precipitation";
         break;
     }
 
@@ -950,43 +950,43 @@ static void _7wwWW_1(std::string &w)
 
     switch (W2) {
     case 0:
-        type2 = "\"cloud covering less than half of sky\"";
+        type2 = "cloud covering less than half of sky";
         break;
 
     case 1:
-        type2 = "\"cloud covering more than half of sky during part of period and more than half during part of period\"";
+        type2 = "cloud covering more than half of sky during part of period and more than half during part of period";
         break;
 
     case 2:
-        type2 = "\"cloud covering more than half of sky\"";
+        type2 = "cloud covering more than half of sky";
         break;
 
     case 3:
-        type2 = "\"sandstorm, duststorm or blowing snow\"";
+        type2 = "sandstorm, duststorm or blowing snow";
         break;
 
     case 4:
-        type2 = "\"fog or ice fog orthick haze\"";
+        type2 = "fog or ice fog orthick haze";
         break;
 
     case 5:
-        type2 = "\"drizzle\"";
+        type2 = "drizzle";
         break;
 
     case 6:
-        type2 = "\"rain\"";
+        type2 = "rain";
         break;
 
     case 7:
-        type2 = "\"snow or mixed rain and snow\"";
+        type2 = "snow or mixed rain and snow";
         break;
 
     case 8:
-        type2 = "\"showers\"";
+        type2 = "showers";
         break;
 
     case 9:
-        type2 = "\"Thunderstorm(s) with or without precipitation\"";
+        type2 = "Thunderstorm(s) with or without precipitation";
         break;
     }
 
@@ -1004,43 +1004,43 @@ static void _8NCCC_1(std::string &w)
     if(N != -1)
         switch(N) {
         case 0:
-            cloudCover = "\"0  (clear)\"";
+            cloudCover = "0  (clear)";
             break;
 
         case 1:
-            cloudCover = "\"1/8th or less \"";
+            cloudCover = "1/8th or less ";
             break;
 
         case 2:
-            cloudCover = "\"2/8ths\"";
+            cloudCover = "2/8ths";
             break;
 
         case 3:
-            cloudCover = "\"3/8ths\"";
+            cloudCover = "3/8ths";
             break;
 
         case 4:
-            cloudCover = "\"4/8ths\"";
+            cloudCover = "4/8ths";
             break;
 
         case 5:
-            cloudCover = "\"5/8ths\"";
+            cloudCover = "5/8ths";
             break;
 
         case 6:
-            cloudCover = "\"6/8ths\"";
+            cloudCover = "6/8ths";
             break;
 
         case 7:
-            cloudCover = "\"7/8ths or more, but not 8/8\"";
+            cloudCover = "7/8ths or more, but not 8/8";
             break;
 
         case 8:
-            cloudCover = "\"8/8ths (overcast)\"";
+            cloudCover = "8/8ths (overcast)";
             break;
 
         case 9:
-            cloudCover = "\"sky obscured or cannot be estimated\"";
+            cloudCover = "sky obscured or cannot be estimated";
             break;
         }
 
@@ -1049,47 +1049,47 @@ static void _8NCCC_1(std::string &w)
     int Cl = toDigit(w[2]);
 
     if(Cl == -1)
-        lowCloudType = "\"low clouds unobserved due to darkness or obscuration\"";
+        lowCloudType = "low clouds unobserved due to darkness or obscuration";
     else
         switch(Cl) {
         case 0:
-            lowCloudType = "\"no low clouds\"";
+            lowCloudType = "no low clouds";
             break;
 
         case 1:
-            lowCloudType = "\"cumulus humulis or fractus (no vertical development)\"";
+            lowCloudType = "cumulus humulis or fractus (no vertical development)";
             break;
 
         case 2:
-            lowCloudType = "\"cumulus mediocris or congestus (moderate vertical development)\"";
+            lowCloudType = "cumulus mediocris or congestus (moderate vertical development)";
             break;
 
         case 3:
-            lowCloudType = "\"cumulonimbus calvus (no outlines nor anvil)\"";
+            lowCloudType = "cumulonimbus calvus (no outlines nor anvil)";
             break;
 
         case 4:
-            lowCloudType = "\"stratocumulus cumulogenitus (formed by spreading of cumulus)\"";
+            lowCloudType = "stratocumulus cumulogenitus (formed by spreading of cumulus)";
             break;
 
         case 5:
-            lowCloudType = "\"stratocumulus\"";
+            lowCloudType = "stratocumulus";
             break;
 
         case 6:
-            lowCloudType = "\"stratus nebulosus (continuous sheet)\"";
+            lowCloudType = "stratus nebulosus (continuous sheet)";
             break;
 
         case 7:
-            lowCloudType = "\"stratus or cumulus fractus (bad weather)\"";
+            lowCloudType = "stratus or cumulus fractus (bad weather)";
             break;
 
         case 8:
-            lowCloudType = "\"cumulus and stratocumulus (multilevel)\"";
+            lowCloudType = "cumulus and stratocumulus (multilevel)";
             break;
 
         case 9:
-            lowCloudType = "\"cumulonimbus with anvil\"";
+            lowCloudType = "cumulonimbus with anvil";
             break;
         }
 
@@ -1098,47 +1098,47 @@ static void _8NCCC_1(std::string &w)
     std::string middleCloudType;
 
     if(Cm == -1)
-        middleCloudType = "\"middle clouds unobserved due to darkness or obscuration\"";
+        middleCloudType = "middle clouds unobserved due to darkness or obscuration";
     else
         switch(Cm) {
         case 0:
-            middleCloudType = "\"no middle clouds\"";
+            middleCloudType = "no middle clouds";
             break;
 
         case 1:
-            middleCloudType = "\"altostratus translucidous (mostly transparent)\"";
+            middleCloudType = "altostratus translucidous (mostly transparent)";
             break;
 
         case 2:
-            middleCloudType = "\"altostratus opacus or nimbostratus\"";
+            middleCloudType = "altostratus opacus or nimbostratus";
             break;
 
         case 3:
-            middleCloudType = "\"altocumulus translucidous (mostly transparent)\"";
+            middleCloudType = "altocumulus translucidous (mostly transparent)";
             break;
 
         case 4:
-            middleCloudType = "\"patches of altocumulus (irregular, lenticular)\"";
+            middleCloudType = "patches of altocumulus (irregular, lenticular)";
             break;
 
         case 5:
-            middleCloudType = "\"bands of altocumulus\"";
+            middleCloudType = "bands of altocumulus";
             break;
 
         case 6:
-            middleCloudType = "\"altocumulus cumulogenitus (formed by spreading of cumulus)\"";
+            middleCloudType = "altocumulus cumulogenitus (formed by spreading of cumulus)";
             break;
 
         case 7:
-            middleCloudType = "\"altocumulus (multilayers)\"";
+            middleCloudType = "altocumulus (multilayers)";
             break;
 
         case 8:
-            middleCloudType = "\"altocumulus castellanus (having cumuliform tufts)\"";
+            middleCloudType = "altocumulus castellanus (having cumuliform tufts)";
             break;
 
         case 9:
-            middleCloudType = "\"altocumulus of a chaotic sky\"";
+            middleCloudType = "altocumulus of a chaotic sky";
             break;
         }
 
@@ -1147,47 +1147,47 @@ static void _8NCCC_1(std::string &w)
     int Ch = toDigit(w[4]);
 
     if(Ch == -1)
-        highCloudType = "\"middle clouds unobserved due to darkness or obscuration\"";
+        highCloudType = "middle clouds unobserved due to darkness or obscuration";
     else
         switch(Ch) {
         case 0:
-            highCloudType = "\"no high clouds\"";
+            highCloudType = "no high clouds";
             break;
 
         case 1:
-            highCloudType = "\"cirrus fibratus (wispy)\"";
+            highCloudType = "cirrus fibratus (wispy)";
             break;
 
         case 2:
-            highCloudType = "\"cirrus spissatus (dense in patches)\"";
+            highCloudType = "cirrus spissatus (dense in patches)";
             break;
 
         case 3:
-            highCloudType = "\"cirrus spissatus cumulogenitus (formed out of anvil)\"";
+            highCloudType = "cirrus spissatus cumulogenitus (formed out of anvil)";
             break;
 
         case 4:
-            highCloudType = "\"cirrus unicus or fibratus (progressively invading sky)\"";
+            highCloudType = "cirrus unicus or fibratus (progressively invading sky)";
             break;
 
         case 5:
-            highCloudType = "\"bands of cirrus or cirrostratus invading sky (less than 45 degree above horizon)\"";
+            highCloudType = "bands of cirrus or cirrostratus invading sky (less than 45 degree above horizon)";
             break;
 
         case 6:
-            highCloudType = "\"bands of cirrus or cirrostratus invading sky (more than 45 degree above horizon)\"";
+            highCloudType = "bands of cirrus or cirrostratus invading sky (more than 45 degree above horizon)";
             break;
 
         case 7:
-            highCloudType = "\"cirrostratus covering whole sky\"";
+            highCloudType = "cirrostratus covering whole sky";
             break;
 
         case 8:
-            highCloudType = "\"cirrostratus not covering sky but not invading\"";
+            highCloudType = "cirrostratus not covering sky but not invading";
             break;
 
         case 9:
-            highCloudType = "\"cirrocumulus\"";
+            highCloudType = "cirrocumulus";
             break;
         }
 
@@ -1297,23 +1297,23 @@ void section0(char *l)
 
     switch (windIndicator) {
     case 0:
-        windIndicatorStr = "\"wind speed estimated (metres/sec)\"";
+        windIndicatorStr = "wind speed estimated (metres/sec)";
         break;
 
     case 1:
-        windIndicatorStr = "\"wind speed form anemometer (metres/sec)\"";
+        windIndicatorStr = "wind speed form anemometer (metres/sec)";
         break;
 
     case 3:
-        windIndicatorStr = "\"wind speed estimated (knots/sec)\"";
+        windIndicatorStr = "wind speed estimated (knots/sec)";
         break;
 
     case 4:
-        windIndicatorStr = "\"wind speed form anemometer (knots/sec)\"";
+        windIndicatorStr = "wind speed form anemometer (knots/sec)";
         break;
 
     default:
-        windIndicatorStr = "\"unknown\"";
+        windIndicatorStr = "unknown";
         break;
     }
 
@@ -1440,43 +1440,43 @@ static void _4Esss_3(std::string &w)
 
     switch(E4) {
     case 0:
-        StateOfGround = "\"predominantly covered with ice\"";
+        StateOfGround = "predominantly covered with ice";
         break;
 
     case 1:
-        StateOfGround = "\"compact or wet snow covering less than half of ground\"";
+        StateOfGround = "compact or wet snow covering less than half of ground";
         break;
 
     case 2:
-        StateOfGround = "\"compact or wet snow covering more than half of ground but not completely covered\"";
+        StateOfGround = "compact or wet snow covering more than half of ground but not completely covered";
         break;
 
     case 3:
-        StateOfGround = "\"even layer of compact or wet snow covering entire ground\"";
+        StateOfGround = "even layer of compact or wet snow covering entire ground";
         break;
 
     case 4:
-        StateOfGround = "\"uneven layer of compact or wet snow covering entire ground\"";
+        StateOfGround = "uneven layer of compact or wet snow covering entire ground";
         break;
 
     case 5:
-        StateOfGround= "\"loose dry snow covering less than half of ground\"";
+        StateOfGround= "loose dry snow covering less than half of ground";
         break;
 
     case 6:
-        StateOfGround= "\"loose dry snow covering more than half of ground but not completely covered\"";
+        StateOfGround= "loose dry snow covering more than half of ground but not completely covered";
         break;
 
     case 7:
-        StateOfGround= "\"even layer of loose dry snow covering entire ground\"";
+        StateOfGround= "even layer of loose dry snow covering entire ground";
         break;
 
     case 8:
-        StateOfGround= "\"uneven layer of loose dry snow covering entire ground\"";
+        StateOfGround= "uneven layer of loose dry snow covering entire ground";
         break;
 
     case 9:
-        StateOfGround= "\"snow covering ground completely with deep drifts\"";
+        StateOfGround= "snow covering ground completely with deep drifts";
         break;
     }
 
@@ -1485,15 +1485,15 @@ static void _4Esss_3(std::string &w)
     std::string depth;
 
     if(sss == 0)
-        depth= "\"Not used\"";
+        depth= "Not used";
     else if(sss > 0 && sss < 997)
         depth = std::to_string(sss);
     else if(sss == 997)
-        depth= "\"Less that 0.5\"";
+        depth= "Less that 0.5";
     else if(sss == 998)
-        depth= "\"Snow cover not continuous\"";
+        depth= "Snow cover not continuous";
     else
-        depth= "\"Measurement impossible or inaccurate\"";
+        depth= "Measurement impossible or inaccurate";
 
 
     hash["snow depth (cm)"] = depth;
@@ -1517,9 +1517,9 @@ static void _6RRRt_3(std::string &w)
     if(RRR < 989)
         precipitation = std::to_string(RRR);
     else if(RRR == 989)
-        precipitation= "\"989 or more\"";
+        precipitation= "989 or more";
     else if(RRR == 990)
-        precipitation= "\"Trace\"";
+        precipitation= "Trace";
     else
         precipitation = std::to_string((RRR%10)/10);
 
@@ -1578,7 +1578,7 @@ static void _7RRRR_3(std::string &w)
     float RRRR = toDigit(w[1])*100 + toDigit(w[2])*10 + toDigit(w[3]) + toDigit(w[4])/10.0;
 
     if(RRRR == 999.9)
-        hash["24 hr precipitation (mm)"]= "\"Trace\"";
+        hash["24 hr precipitation (mm)"]= "Trace";
     else
         hash["24 hr precipitation (mm)"] = std::to_string(RRRR);
 }
@@ -1591,47 +1591,47 @@ static void _8NChh_3(std::string &w)
     int C = toDigit(w[2]);
 
     if(C == -1)
-        genusOfCloud= "\"cloud not visible\"";
+        genusOfCloud= "cloud not visible";
     else
         switch(C) {
         case 0:
-            genusOfCloud= "\"cirrus(Ci)\"";
+            genusOfCloud= "cirrus(Ci)";
             break;
 
         case 1:
-            genusOfCloud= "\"cirrocumulus(Cc)\"";
+            genusOfCloud= "cirrocumulus(Cc)";
             break;
 
         case 2:
-            genusOfCloud= "\"cirrostatus(Cs)\"";
+            genusOfCloud= "cirrostatus(Cs)";
             break;
 
         case 3:
-            genusOfCloud= "\"altocumulus(Ac)\"";
+            genusOfCloud= "altocumulus(Ac)";
             break;
 
         case 4:
-            genusOfCloud= "\"altostatus(As)\"";
+            genusOfCloud= "altostatus(As)";
             break;
 
         case 5:
-            genusOfCloud= "\"nimbostratus(Ns)\"";
+            genusOfCloud= "nimbostratus(Ns)";
             break;
 
         case 6:
-            genusOfCloud= "\"stratocumulus(Sc)\"";
+            genusOfCloud= "stratocumulus(Sc)";
             break;
 
         case 7:
-            genusOfCloud= "\"stratus(St)\"";
+            genusOfCloud= "stratus(St)";
             break;
 
         case 8:
-            genusOfCloud= "\"cumulus(Cu)\"";
+            genusOfCloud= "cumulus(Cu)";
             break;
 
         case 9:
-            genusOfCloud= "\"cumulonimbus(Cb)\"";
+            genusOfCloud= "cumulonimbus(Cb)";
             break;
         }
 
@@ -1750,7 +1750,7 @@ void decode()
                 firstTime = false;
 
                 for(int i = 0; i<fieldList.size()-1; ++i)
-                    std::cout<<"\""<<fieldList[i]<<"\",";
+                    std::cout<<'"'<<fieldList[i]<<"\",";
 
                 std::cout<<'"'<<fieldList[fieldList.size()-1]<<"\"\n";
             }

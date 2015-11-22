@@ -80,6 +80,7 @@ dateDirs=$(ls -v $initialInputDir)
 for currDate in $dateDirs; do
     fileList=$(ls -v $initialInputDir/$currDate)
     readingNo=0
+    echo "bash: running for: $currDate"
     for x in $fileList; do
         echo $currDate/$x >>stderror
         
@@ -104,3 +105,6 @@ if [ $catCSV ] ;then
     echo "started cat csv"
     source catCSV.sh
 fi
+
+echo "done"
+exit 0
