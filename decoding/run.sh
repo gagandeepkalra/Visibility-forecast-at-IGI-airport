@@ -26,12 +26,18 @@
 #
 # -t    --stationListFile
 #           file that contains which stations are to be printed to output
+#
+# -v    --verbose
+#           prints verbose field value
 
 #if 1, 48 files of one day will be concatenated to one file
 catCSV=1
 
 #enableSQL=0 disables pushing decodings to database, enableSQL=1 enables it
 enableSQL=0
+
+# =1 enables printing verbose field value
+enableVerbose=0
 
 # dir where input files are present
 initialInputDir="../Input-Output/AfterCat"
@@ -44,6 +50,8 @@ csvDir="../Input-Output/CSV"
 
 fieldListFile="fieldListFile.txt"
 stationListFile="stationListFile.txt"
+
+rm -Rf "../Input-Output/catCSV/"
 
 # check for existence of sqlDetails.config file
 if [ ! -e ./a.out ] ;then
@@ -86,10 +94,18 @@ for currDate in $dateDirs; do
         
         mkdir -p "$sectionsDir/$currDate" "$csvDir/$currDate"
         if [ $enableSQL -eq 1 ] ;then
-            ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+            if [ $enableVerbose -eq 1 ] ;then
+                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --verbose --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+            else
+                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+            fi #enableVerbose
         else
-            ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
-        fi
+            if [ $enableVerbose -eq 1 ] ;then
+                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --verbose < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+            else
+                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+            fi #enableVerbose
+        fi #enableSQL
         
         #if program did not terminate successfully, echo message
         if [ $? -ne 0 ] ;then
@@ -101,7 +117,7 @@ for currDate in $dateDirs; do
 done;
 
 #cat csv
-if [ $catCSV ] ;then
+if [ $catCSV -eq 1 ] ;then
     echo "started cat csv"
     source catCSV.sh
 fi

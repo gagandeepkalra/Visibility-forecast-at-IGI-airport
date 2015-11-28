@@ -9,6 +9,7 @@
     #include <iomanip>
     #include <string.h>
     #include <fstream>
+    #include "parameters.h"
     
     //todo: int ex
     int yylex(void);
@@ -129,8 +130,10 @@ void yyerror(const char *s) {
 extern std::string sqlusername, sqlpassword, sqldbname;
 extern int toDB;
 #endif
-
-extern std::vector<std::string> fieldList;
+extern std::vector<std::string> Hash;
+extern std::vector<std::string> uHash;
+extern int verboseFlag;
+extern std::vector<int> fieldList; //list of index of the fields that are required
 extern std::vector<int> stationList;
 extern int readingNo;
 extern char *explicitDateStrYYYYMMDD;
@@ -146,6 +149,7 @@ int main(int argc, char *argv[]) {
 #ifdef SQL
             {"toDB", no_argument, &toDB, 1},
 #endif
+            {"verbose", no_argument, &verboseFlag, 1},
             {"readingNo", required_argument, 0, 'r'},
             {"sectionFile", required_argument, 0, 's'}, 
             {"date", required_argument, 0, 'd'},
@@ -164,9 +168,9 @@ int main(int argc, char *argv[]) {
         
         char c;
 #ifdef SQL
-        c = getopt_long(argc, argv, "r:s:d:u:p:b:of:t:", long_options, &option_index);
+        c = getopt_long(argc, argv, "r:s:d:u:p:b:of:t:v", long_options, &option_index);
 #else
-        c = getopt_long(argc, argv, "r:s:d:f:t:", long_options, &option_index);
+        c = getopt_long(argc, argv, "r:s:d:f:t:v", long_options, &option_index);
 #endif
 
         /* Detect the end of the options. */
@@ -212,6 +216,7 @@ int main(int argc, char *argv[]) {
             }
 
             string field;
+            int ctr = 0;
             while(fieldListFile.good()) {
                 bool wanted; string field;
                 fieldListFile>>wanted;
@@ -219,9 +224,13 @@ int main(int argc, char *argv[]) {
                 std::getline(fieldListFile, field, '"'); //discard spaces
                 std::getline(fieldListFile, field, '"');
                 fieldListFile.get(); //ignore newline char
+
                 if(wanted)
-                    fieldList.push_back(field);
+                    fieldList.push_back(ctr);
+                ++ctr;
             }
+            Hash.resize(totalFields);
+            uHash.resize(totalFields);
         }
             break;
         case 't':

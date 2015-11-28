@@ -7,20 +7,35 @@
 #include <iostream>
 #include <unordered_map>
 #include "stationData.h"
+#include "parameters.h"
 #include <sstream>
 #include <time.h>
 #include <getopt.h>
 
 #ifdef SQL
-#include "../sql/sqlSession.h"
-#include "../sql/pushDB.h"
-std::string sqldbname, sqlusername, sqlpassword;
-int toDB = false;
+// *INDENT-OFF*
+    #include "../sql/sqlSession.h"
+    #include "../sql/pushDB.h"
+    std::string sqldbname, sqlusername, sqlpassword;
+    int toDB = false;
+// *INDENT-ON*
 #endif
 
-std::vector<std::string> fieldList;
+int verboseFlag = false;
+std::vector<int> fieldList;
 std::vector<int> stationList;
 char *explicitDateStrYYYYMMDD = NULL;
+
+//stores all verbose data required to be printed
+std::vector<std::string> Hash;
+
+//stores all data but as much close to integer values as possible
+std::vector<std::string> uHash;
+
+/* while decoding if some error occurs, decodeError is set true.
+ * if decodeError = true, none of the decoding gets printed
+ */
+static bool decodeError = false;
 
 static int toDigit(char c)
 {
@@ -35,15 +50,6 @@ static int toDigit(char c)
  * the number after last underscore tells to which section the function belongs to
  */
 
-//stores all verbose data required to be printed
-static std::unordered_map<std::string, std::string> hash;
-
-/* while decoding if some error occurs, decodeError is set true.
- * if decodeError = true, none of the decoding gets printed
- *
- */
-static bool decodeError = false;
-
 static bool iihVV_1(std::string &w)
 {
     int ir = toDigit(w[0]);
@@ -53,9 +59,10 @@ static bool iihVV_1(std::string &w)
         decodeError = true;
         return false;
     }
+    
+    uHash[PRECIPITATION_INDICATOR] = std::string(1, w[0]);
 
     std::string precipitationIndicator;
-
     switch (ir) {
     case 0:
         precipitationIndicator = "Precipitation in groups 1 and 3";
@@ -81,8 +88,9 @@ static bool iihVV_1(std::string &w)
         return false;
     }
 
+    uHash[STATION_TYPE] = std::string(1, w[1]);
+    
     std::string stationType;
-
     switch (ix) {
     case 1:
         stationType = "manned station -- weather group included";
@@ -117,54 +125,55 @@ static bool iihVV_1(std::string &w)
     }
 
     int h = toDigit(w[2]); //  can be missing
-    std::string cloudBase = "nunknown";
-
+    uHash[STATION_TYPE] = std::string(1, w[2]);
+    
+    std::string cloudBase = "unknown";
     if(h != -1)
         switch(h) {
         case 0:
-            cloudBase = "0 to 50 m";
+            cloudBase = "0 to 50";
             break;
 
         case 1:
-            cloudBase = "50 to 100 m";
+            cloudBase = "50 to 100";
             break;
 
         case 2:
-            cloudBase = "100 to 200 m";
+            cloudBase = "100 to 200";
             break;
 
         case 3:
-            cloudBase = "200 to 300 m";
+            cloudBase = "200 to 300";
             break;
 
         case 4:
-            cloudBase = "300 to 600 m";
+            cloudBase = "300 to 600";
             break;
 
         case 5:
-            cloudBase = "600 to 1000 m";
+            cloudBase = "600 to 1000";
             break;
 
         case 6:
-            cloudBase = "1000 to 1500 m";
+            cloudBase = "1000 to 1500";
             break;
 
         case 7:
-            cloudBase = "1500 to 2000 m";
+            cloudBase = "1500 to 2000";
             break;
 
         case 8:
-            cloudBase = "2000 to 2500 m";
+            cloudBase = "2000 to 2500";
             break;
 
         case 9:
-            cloudBase = "above 2500 m or higher or no clouds";
+            cloudBase = "above 2500 or higher or no clouds";
             break;
         }
 
     int VV = toDigit(w[3]) * 10 + toDigit(w[4]);  //can be missing
-    std::string visibility = "unknown";
 
+    std::string visibility = "unknown";
     if(VV > 0) {
         if(VV >= 0 && VV <= 50)
             visibility = VV/10;
@@ -215,11 +224,13 @@ static bool iihVV_1(std::string &w)
                 break;
             }
     }
+    
+    uHash[VISIBILITY_KM] = visibility;
 
-    hash["precipitation indicator"] = precipitationIndicator;
-    hash["station type"] = stationType;
-    hash["cloud base of lowest cloud seen (m)"] = cloudBase;
-    hash["Visibility"] = visibility;
+    Hash[PRECIPITATION_INDICATOR] = precipitationIndicator;
+    Hash[STATION_TYPE] = stationType;
+    Hash[CLOUD_BASE_OF_LOWEST_CLOUD_SEEN_M] = cloudBase;
+    Hash[VISIBILITY_KM] = visibility;
 
     return true;
 }
@@ -227,13 +238,14 @@ static bool iihVV_1(std::string &w)
 static bool Nddff_1(std::string &w)
 {
     int N = toDigit(w[0]);
+    uHash[CLOUD_COVER] = std::string(1, w[0]);
+    
     std::string cloudCover = "No measurement made";
-
     //oktas
     if(N != -1)
         switch(N) {
         case 0:
-            cloudCover = "0  (clear)";
+            cloudCover = "0 (clear)";
             break;
 
         case 1:
@@ -272,20 +284,23 @@ static bool Nddff_1(std::string &w)
             cloudCover = "sky obscured or cannot be estimated";
             break;
         }
-
-    std::string windDirection;
+        
     int dd= toDigit(w[1]) *10 + toDigit(w[2]);
-
-    if(dd == 99)
+        
+    std::string windDirection;
+    if(dd == 99) {
         windDirection = " Variable, or all directions,  or unknown, or waves confused, direction indeterminate.";
+        uHash[WIND_DIRECTION] = std::to_string(-99);
+    }
     else {
         dd *=  10; //todo: short method applied now, use correct decoding
         windDirection = std::to_string(dd);
+        uHash[WIND_DIRECTION] = std::to_string(dd);
     }
 
-    int surfaceWindSpeed;
     int ff = toDigit(w[3])*10 + toDigit(w[4]);
 
+    int surfaceWindSpeed;
     if(ff == 0)
         surfaceWindSpeed = 0;
     else if(ff >= 4 && ff <= 6)
@@ -310,10 +325,12 @@ static bool Nddff_1(std::string &w)
         surfaceWindSpeed = 60;
     else
         surfaceWindSpeed = -99; //speed in 00fff group
+        
+    uHash[SURFACE_WIND_SPEED] = std::to_string(surfaceWindSpeed);
 
-    hash["cloud cover"] = cloudCover;
-    hash["wind direction"] = windDirection; //speed units given by speed indicator field
-    hash["surface wind speed"] = std::to_string(surfaceWindSpeed);
+    Hash[CLOUD_COVER] = cloudCover;
+    Hash[WIND_DIRECTION] = windDirection; //speed units given by speed indicator field
+    Hash[SURFACE_WIND_SPEED] = std::to_string(surfaceWindSpeed);
 
     return true;
 }
@@ -321,14 +338,15 @@ static bool Nddff_1(std::string &w)
 static bool _00fff_1(std::string &w)
 {
     int d1 = toDigit(w[0]);
-    int d2 = toDigit(w[2]);
+    int d2 = toDigit(w[1]);
 
     if( ! (d1 == 0 && d2 == 0))
         return false;
 
     int fff = toDigit(w[2])*100 + toDigit(w[3])*10 + toDigit(w[4]);
 
-    hash["optional wind speed"] = fff;
+    uHash[OPTIONAL_WIND_SPEED] = std::string(1, w[2]).append(1, w[3]).append(1, w[4]);
+    Hash[OPTIONAL_WIND_SPEED] = fff;
 
     return true;
 }
@@ -341,8 +359,9 @@ static void _1sTTT_1(std::string &w)
 
     if(sign == 1)
         TTT = -TTT;
-
-    hash["temperature (C)"] = std::to_string(TTT);
+    
+    uHash[TEMPERATURE_C] = std::to_string(TTT);
+    Hash[TEMPERATURE_C] = std::to_string(TTT);
 }
 
 static void _2sTTT_29UUU_1(std::string &w)
@@ -350,9 +369,12 @@ static void _2sTTT_29UUU_1(std::string &w)
     int TTT = toDigit(w[2])*10 + toDigit(w[3]) + toDigit(w[4])/10.0;
 
     if(w[1] == '1' || w[1] == '0') {
-        hash["dewpoint (C)"] =  std::to_string(-TTT);
-    } else if(w[1] == '9')
-        hash["relative humidity (%)"] =  std::to_string(TTT * 10);
+        uHash[DEWPOINT_C] = std::to_string(-TTT);
+        Hash[DEWPOINT_C] =  std::to_string(-TTT);
+    } else if(w[1] == '9') {
+        uHash[RELATIVE_HUMIDITY_PERC] = std::to_string(-TTT);
+        Hash[RELATIVE_HUMIDITY_PERC] =  std::to_string(TTT * 10);
+    }
 }
 
 static void _3PPPP_1(std::string &w)
@@ -361,10 +383,10 @@ static void _3PPPP_1(std::string &w)
 
     //todo: unit is not clear, and decoding is not correct
     if(w[1] == '1')
-        PPPP /= 1000;
+        PPPP = PPPP/1000.0;
 
-    hash["station pressure (hPa)"] = std::to_string(PPPP);
-
+    uHash[STATION_PRESSURE_HPA] = std::to_string(PPPP);
+    Hash[STATION_PRESSURE_HPA] = std::to_string(PPPP);
 }
 
 static void _4PPPP_1(std::string &w)
@@ -376,14 +398,16 @@ static void _4PPPP_1(std::string &w)
         PPPP /= 1000;
 
     //todo: check the unit
-    hash["sea level pressure (hPa)"] = std::to_string(PPPP);
+    uHash[SEA_LEVEL_PRESSURE_MB] = std::to_string(PPPP);
+    Hash[SEA_LEVEL_PRESSURE_MB] = std::to_string(PPPP);
 }
 
 static void _5appp_1(std::string &w)
 {
-    std::string pressureTendency;
     int a = toDigit(w[1]);
-
+    uHash[PRESSURE_TENDENCY] = std::string(1, w[1]);
+    
+    std::string pressureTendency;
     switch(a) {
     case 0:
         pressureTendency = "Increasing, then decreasing -- resultant pressure same or higher";
@@ -424,16 +448,18 @@ static void _5appp_1(std::string &w)
 
 
     float ppp = toDigit(w[2])*10 + toDigit(w[3]) + toDigit(w[4])/10.0;
+    
+    uHash[PRESSURE_CHANGE_IN_LAST_3HRS_HPA] = std::to_string(ppp);
 
-    hash["pressure tendency"] = pressureTendency;
-    hash["pressure change in last 3hrs (hPa)"] = std::to_string(ppp);
+    Hash[PRESSURE_TENDENCY] = pressureTendency;
+    Hash[PRESSURE_CHANGE_IN_LAST_3HRS_HPA] = std::to_string(ppp);
 }
 
 static void _6RRRt_1(std::string &w)
 {
     int RRR = toDigit(w[1])*100 + toDigit(w[2])*10 + toDigit(w[3]);
+        
     std::string precipitation;
-
     if(RRR < 989)
         precipitation = std::to_string(RRR);
     else if(RRR == 989)
@@ -443,6 +469,7 @@ static void _6RRRt_1(std::string &w)
     else
         precipitation = std::to_string((RRR%10)/10.0) ;
 
+    uHash[LIQUID_PRECIPITATION_AMOUNT_SEC_1_MM] = precipitation;
 
     int t = toDigit(w[4]);
 
@@ -488,16 +515,19 @@ static void _6RRRt_1(std::string &w)
             duration = "15";
             break;
         }
+        
+    uHash[LIQUID_PRECIPITATION_DURATION_SEC_1_HRS] = duration;
 
-    hash["liquid precipitation amount Sec 1 (mm)"] = std::to_string(RRR);
-    hash["liquid precipitation duration Sec 1 (hrs)"] = duration;
+    Hash[LIQUID_PRECIPITATION_AMOUNT_SEC_1_MM] = std::to_string(RRR);
+    Hash[LIQUID_PRECIPITATION_DURATION_SEC_1_HRS] = duration;
 }
 
 static void _7wwWW_1(std::string &w)
 {
     int ww = toDigit(w[1])*10 + toDigit(w[2]);
+    uHash[PRESENT_WEATHER] = std::string(1, w[1]).append(1, w[2]);
+        
     std::string presentWeather;
-
     switch (ww) {
     case 0:
         presentWeather = "Cloud development not observed or not observable";
@@ -516,7 +546,7 @@ static void _7wwWW_1(std::string &w)
         break;
 
     case 4:
-        presentWeather = "Visibility reduced by smoke, e.g. veldt or forest fires, industrial smoke or volcanic ashes";
+        presentWeather = "visibility reduced by smoke, e.g. veldt or forest fires, industrial smoke or volcanic ashes";
         break;
 
     case 5:
@@ -901,8 +931,9 @@ static void _7wwWW_1(std::string &w)
     }
 
     int W1 = toDigit(w[3]);
+    uHash[PAST_WEATHER_MOST_SIGNIFICANT] = std::string(1, w[3]);
+    
     std::string type1;
-
     switch (W1) {
     case 0:
         type1 = "cloud covering less than half of sky";
@@ -946,8 +977,9 @@ static void _7wwWW_1(std::string &w)
     }
 
     int W2 = toDigit(w[4]);
+    uHash[PAST_WEATHER_SECOND_MOST_SIGNIFICANT] = std::string(1, w[4]);
+    
     std::string type2;
-
     switch (W2) {
     case 0:
         type2 = "cloud covering less than half of sky";
@@ -990,21 +1022,22 @@ static void _7wwWW_1(std::string &w)
         break;
     }
 
-    hash["present weather"] = presentWeather;
-    hash["past weather (most significant)"] = type1;
-    hash["past weather (second most significant)"] = type2;
+    Hash[PRESENT_WEATHER] = presentWeather;
+    Hash[PAST_WEATHER_MOST_SIGNIFICANT] = type1;
+    Hash[PAST_WEATHER_SECOND_MOST_SIGNIFICANT] = type2;
 }
 
 static void _8NCCC_1(std::string &w)
 {
     int N = toDigit(w[1]);
+    uHash[AMOUNT_OF_LOWERLOW_MIDDLE_CLOUD_COVER] = std::string(1, w[1]);
+    
     std::string cloudCover;
-
     //oktas
     if(N != -1)
         switch(N) {
         case 0:
-            cloudCover = "0  (clear)";
+            cloudCover = "0 (clear)";
             break;
 
         case 1:
@@ -1045,9 +1078,10 @@ static void _8NCCC_1(std::string &w)
         }
 
     //lowCloudType
-    std::string lowCloudType;
     int Cl = toDigit(w[2]);
+    uHash[LOW_CLOUD_TYPE] = std::string(1, w[2]);
 
+    std::string lowCloudType;
     if(Cl == -1)
         lowCloudType = "low clouds unobserved due to darkness or obscuration";
     else
@@ -1095,8 +1129,9 @@ static void _8NCCC_1(std::string &w)
 
     //middleCloudType
     int Cm = toDigit(w[3]);
+    uHash[MIDDLE_CLOUD_TYPE] = std::string(1, w[3]);
+    
     std::string middleCloudType;
-
     if(Cm == -1)
         middleCloudType = "middle clouds unobserved due to darkness or obscuration";
     else
@@ -1143,9 +1178,10 @@ static void _8NCCC_1(std::string &w)
         }
 
     //highCloudType
-    std::string highCloudType;
     int Ch = toDigit(w[4]);
+    uHash[HIGH_CLOUD_TYPE] = std::string(1, w[4]);
 
+    std::string highCloudType;
     if(Ch == -1)
         highCloudType = "middle clouds unobserved due to darkness or obscuration";
     else
@@ -1191,10 +1227,10 @@ static void _8NCCC_1(std::string &w)
             break;
         }
 
-    hash["amount of lower(low/middle) cloud cover"] = cloudCover;
-    hash["low cloud type"] = lowCloudType;
-    hash["middle cloud type"] = middleCloudType;
-    hash["high cloud type"] = highCloudType;
+    Hash[AMOUNT_OF_LOWERLOW_MIDDLE_CLOUD_COVER] = cloudCover;
+    Hash[LOW_CLOUD_TYPE] = lowCloudType;
+    Hash[MIDDLE_CLOUD_TYPE] = middleCloudType;
+    Hash[HIGH_CLOUD_TYPE] = highCloudType;
 }
 
 static void _9GGgg_1(std::string &w)
@@ -1202,7 +1238,8 @@ static void _9GGgg_1(std::string &w)
     int GG = toDigit(w[1])*10 + toDigit(w[2]);
     int gg = toDigit(w[3])*10 + toDigit(w[4]);
 
-    hash["time of oberservation (hh:mm)"] = std::to_string(GG) + ":" + std::to_string(gg);
+    uHash[TIME_OF_OBERSERVATION_HHMM] = std::string(1, w[1]).append(1, w[2]).append(1, w[3]).append(1, w[4]);
+    Hash[TIME_OF_OBERSERVATION_HHMM] = std::to_string(GG) + ":" + std::to_string(gg);
 }
 
 static std::vector<stationData> stationDataVector;
@@ -1236,7 +1273,7 @@ void initialize()
  */
 static stationData getSationData(int stationCode)
 {
-    if(stationDataVector.size() == 0) {
+    if( ! stationDataVector.size() ) {
         std::cerr << "stationDataVector size is zero. Check if initialize() function got executed properly\n";
         abort();
     }
@@ -1291,10 +1328,12 @@ void section0(char *l)
     }
 
     int nearestHour = toDigit(gmtTime[2])*10 + toDigit(gmtTime[3]);
+    uHash[NEAREST_HOUR] = std::to_string(gmtTime[2]).append(1, gmtTime[3]);
 
     int windIndicator = toDigit(gmtTime[4]);
+    uHash[WIND_INDICATOR] = std::to_string(gmtTime[4]);
+    
     std::string windIndicatorStr;
-
     switch (windIndicator) {
     case 0:
         windIndicatorStr = "wind speed estimated (metres/sec)";
@@ -1316,14 +1355,16 @@ void section0(char *l)
         windIndicatorStr = "unknown";
         break;
     }
+    
+    uHash[YEAR] = std::to_string(year);
+    uHash[MONTH] = std::to_string(month);
+    uHash[DAY] = std::to_string(day);
 
-    hash["year"] = std::to_string(year);
-    hash["month"] = std::to_string(month);
-    hash["day"] = std::to_string(day);
-    hash["nearest hour"] = std::to_string(nearestHour);
-    hash["wind indicator"] = windIndicatorStr;
-    hash["wind indicator dig"] = std::to_string(windIndicator);
-
+    Hash[YEAR] = std::to_string(year);
+    Hash[MONTH] = std::to_string(month);
+    Hash[DAY] = std::to_string(day);
+    Hash[NEAREST_HOUR] = std::to_string(nearestHour);
+    Hash[WIND_INDICATOR] = windIndicatorStr;
 }
 
 void section1(char *l)
@@ -1335,15 +1376,20 @@ void section1(char *l)
                       + toDigit(stationC[3])*10 + toDigit(stationC[4]);
     stationData data = getSationData(stationCode);
 
-    hash["station code"] = std::to_string(stationCode);
-    hash["station place name"] = data.place_name;
-    hash["station latitude"] = data.lat;
-    hash["station longitude"] = data.lon;
+    uHash[STATION_CODE] = std::to_string(stationCode);
+    uHash[STATION_PLACE_NAME] = data.place_name;
+    uHash[STATION_LONGITUDE] = data.lat;
+    uHash[STATION_LATITUDE] = data.lon;
+    
+    Hash[STATION_CODE] = std::to_string(stationCode);
+    Hash[STATION_PLACE_NAME] = data.place_name;
+    Hash[STATION_LONGITUDE] = data.lat;
+    Hash[STATION_LATITUDE] = data.lon;
 
     iihVV_1(list[1]);
     Nddff_1(list[2]);
 
-    if(hash["surface wind speed"] == std::to_string(-99))
+    if(Hash[SURFACE_WIND_SPEED] == std::to_string(-99))
         if(toDigit(list[3][0]) == 0 && toDigit(list[3][1]) == 0)
             _00fff_1(list[3]);
 
@@ -1411,7 +1457,8 @@ static void _1sTTT_3(std::string &w)
         TTT = -TTT;
 
     //todo: time group for india
-    hash["max temp (C)"] = std::to_string(TTT);
+    uHash[MAX_TEMP_C] = std::to_string(TTT);
+    Hash[MAX_TEMP_C] = std::to_string(TTT);
 }
 
 static void _2sTTT_3(std::string &w)
@@ -1423,21 +1470,24 @@ static void _2sTTT_3(std::string &w)
     if(sign == 1)
         TTT = -TTT;
 
-    hash["min temp last 24hr (C)"] = std::to_string(TTT);
+    uHash[MIN_TEMP_LAST_24HR_C] = std::to_string(TTT);
+    Hash[MIN_TEMP_LAST_24HR_C] = std::to_string(TTT);
 }
 
 static void _3Ejjj_3(std::string &w)
 {
     float Ejjj = toDigit(w[1]);
     // not sure about this ...
-    hash["State of the ground without snow or measurable ice cover"] = std::to_string(Ejjj);
+    uHash[STATE_OF_THE_GROUND_WITHOUT_SNOW_OR_MEASURABLE_ICE_COVER] = std::string(1, w[1]);
+    Hash[STATE_OF_THE_GROUND_WITHOUT_SNOW_OR_MEASURABLE_ICE_COVER] = std::to_string(Ejjj);
 }
 
 static void _4Esss_3(std::string &w)
 {
     int E4 = toDigit(w[1]);
+    uHash[STATE_OF_GROUND] = std::string(1, w[1]);
+    
     std::string StateOfGround;
-
     switch(E4) {
     case 0:
         StateOfGround = "predominantly covered with ice";
@@ -1481,9 +1531,8 @@ static void _4Esss_3(std::string &w)
     }
 
     float sss = toDigit(w[2])*100 + toDigit(w[3])*10 + toDigit(w[4]);
-
+    
     std::string depth;
-
     if(sss == 0)
         depth= "Not used";
     else if(sss > 0 && sss < 997)
@@ -1495,15 +1544,17 @@ static void _4Esss_3(std::string &w)
     else
         depth= "Measurement impossible or inaccurate";
 
+    uHash[SNOW_DEPTH_CM] = depth;
 
-    hash["snow depth (cm)"] = depth;
-    hash["state of ground"] = StateOfGround;
+    Hash[SNOW_DEPTH_CM] = depth;
+    Hash[STATE_OF_GROUND] = StateOfGround;
 }
 
 static void _5jjjj_3(std::string &w)
 {
     // skip it ... dont know what to do
-    hash["additional information"] = w;
+    uHash[ADDITIONAL_INFORMATION] = w;
+    Hash[ADDITIONAL_INFORMATION] = w;
 }
 
 static void _6RRRt_3(std::string &w)
@@ -1511,9 +1562,9 @@ static void _6RRRt_3(std::string &w)
     //todo: incorrect decoding
     // same as section 1 : 6RRRt
     // do check again
-    int RRR = toDigit(w[2])*100 + toDigit(w[2])*10 + toDigit(w[3]);
+    int RRR = toDigit(w[1])*100 + toDigit(w[2])*10 + toDigit(w[3]);
+    
     std::string precipitation;
-
     if(RRR < 989)
         precipitation = std::to_string(RRR);
     else if(RRR == 989)
@@ -1522,12 +1573,12 @@ static void _6RRRt_3(std::string &w)
         precipitation= "Trace";
     else
         precipitation = std::to_string((RRR%10)/10);
-
+    
+    uHash[LIQUID_PRECIPITATION_AMOUNT_SEC_2MM] = precipitation;
 
     int t = toDigit(w[4]);
 
     std::string duration;
-
     if(t == -1)
         duration= "24";
     else
@@ -1568,28 +1619,36 @@ static void _6RRRt_3(std::string &w)
             duration= "15";
             break;
         }
+        
+    uHash[PRECIPITATION_DURATION_SEC_2_HR] = duration;
 
-    hash["liquid precipitation amount Sec 2(mm)"] = std::to_string(RRR);
-    hash["precipitation duration Sec 2 (hr)"] = duration;
+    Hash[LIQUID_PRECIPITATION_AMOUNT_SEC_2MM] = std::to_string(RRR);
+    Hash[PRECIPITATION_DURATION_SEC_2_HR] = duration;
 }
 
 static void _7RRRR_3(std::string &w)
 {
     float RRRR = toDigit(w[1])*100 + toDigit(w[2])*10 + toDigit(w[3]) + toDigit(w[4])/10.0;
 
-    if(RRRR == 999.9)
-        hash["24 hr precipitation (mm)"]= "Trace";
-    else
-        hash["24 hr precipitation (mm)"] = std::to_string(RRRR);
+    if(RRRR == 999.9) {
+        uHash[_24_HR_PRECIPITATION_MM]= "Trace";
+        Hash[_24_HR_PRECIPITATION_MM]= "Trace";
+    }
+    else {
+        uHash[_24_HR_PRECIPITATION_MM] = std::to_string(RRRR);
+        Hash[_24_HR_PRECIPITATION_MM] = std::to_string(RRRR);
+    }
 }
 
 static void _8NChh_3(std::string &w)
 {
     int N = toDigit(w[1]);
-
-    std::string genusOfCloud;
+    uHash[CLOUD_COVERAGE_OF_LAYER] = std::string(1, w[1]);
+    
     int C = toDigit(w[2]);
-
+    uHash[GENUS_OF_CLOUD] = std::string(1, w[2]);
+    
+    std::string genusOfCloud;
     if(C == -1)
         genusOfCloud= "cloud not visible";
     else
@@ -1637,25 +1696,27 @@ static void _8NChh_3(std::string &w)
 
     int hh = toDigit(w[3])*10 + toDigit(w[4]);
     int heightOfCloudBase ;
-
     if(hh <= 50 && hh >= 0)
         heightOfCloudBase = hh * 30 ; // in meters(m)
     else if(hh >= 89 && hh <= 99) {
         ;// dont know what to do with this
     }
+    
+    uHash[HEIGHT_OF_CLOUD_BASE] = std::to_string(heightOfCloudBase);
 
-    hash["cloud coverage of layer"] = std::to_string(N);
-    hash["genus of cloud"] = genusOfCloud;
-    hash["height of cloud base"] = std::to_string(heightOfCloudBase);
+    Hash[CLOUD_COVERAGE_OF_LAYER] = std::to_string(N);
+    Hash[GENUS_OF_CLOUD] = genusOfCloud;
+    Hash[HEIGHT_OF_CLOUD_BASE] = std::to_string(heightOfCloudBase);
 
-    // hash["8NCC"] = GenusOfCloud + " middleCloudType: " + middleCloudType + " highCloudType: " + highCloudType;
+    // Hash["8NCC"] = GenusOfCloud + " middleCloudType: " + middleCloudType + " highCloudType: " + highCloudType;
 }
 
 static void _9SSss_3(std::string &w)
 {
     int SS = toDigit(w[1])*1000 + toDigit(w[2])*100 + toDigit(w[3])*10 + toDigit(w[4]);
 
-    hash["Special Phenomena Group"] = std::to_string(SS);
+    uHash[SPECIAL_PHENOMENA_GROUP] = std::to_string(SS);
+    Hash[SPECIAL_PHENOMENA_GROUP] = std::to_string(SS);
 }
 
 void section3(char *l)
@@ -1722,57 +1783,62 @@ void section5(char *l)
 
 }
 
-static std::string getVal(const std::unordered_map<std::string, std::string> &hash, const std::string key, const int defaultValue = -99)
+static std::string getVal(const std::vector<std::string> &refHash, int fieldPos, const int defaultValue = -99)
 {
-    auto it = hash.find(key);
-
-    if(it == hash.end())
+    if(refHash[fieldPos].empty() )
         return std::to_string(defaultValue);
-
-    return it->second;
+    
+    return refHash[fieldPos];
 }
 
 static bool firstTime = true;
 int readingNo = -1;
 void decode()
-{
+{    
     if(decodeError) {
         decodeError = false;
         return;
     }
 
-    int currCode = stoi(getVal(hash, "station code"));
+    int currCode = stoi(getVal(Hash, STATION_CODE));
 
     for(int j = 0; j<stationList.size(); ++j)
-        if(currCode == stationList[j]) { //this station's detials needs to be printed
+        if(currCode == stationList[j]) { //if curr station code is among required ones
 
             if(firstTime) {//print csv header
                 firstTime = false;
 
                 for(int i = 0; i<fieldList.size()-1; ++i)
-                    std::cout<<'"'<<fieldList[i]<<"\",";
+                    std::cout<<'"'<<csvHeader[ fieldList[i]]<<"\",";
 
-                std::cout<<'"'<<fieldList[fieldList.size()-1]<<"\"\n";
+                std::cout<<'"'<<csvHeader[ fieldList[fieldList.size()-1]]<<"\"\n";
+
+            }//first time
+
+            for(int i = 0; i<fieldList.size()-1; ++i) {
+                std::string temp = getVal(uHash, fieldList[i]);
+                if(verboseFlag)
+                    std::cout<<'"'<<getVal(Hash, fieldList[i])<<"\",";
+                else
+                    std::cout<<'"'<<getVal(uHash, fieldList[i])<<"\",";
             }
 
-            for(int i = 0; i<fieldList.size()-1; ++i)
-                for(int j = 0; j<stationList.size(); ++j)
-                    if(currCode == stationList[j])
-                        std::cout<<'"'<<getVal(hash, fieldList[i])<<"\",";
-
-            std::cout<<'"'<<getVal(hash, fieldList[fieldList.size()-1])<<"\"\n";
+            if(verboseFlag)
+                    std::cout<<'"'<<getVal(Hash, fieldList[ fieldList.size()-1])<<"\"\n";
+                else
+                    std::cout<<'"'<<getVal(uHash, fieldList[ fieldList.size()-1])<<"\"\n";
         } //if(currCode == stationList[j])
 
 #ifdef SQL
 
     if(toDB) {
         soci::session *sql= SQLSession::getSession(&sqldbname, &sqlusername, &sqlpassword);
-        pushDB(sql, hash, readingNo);
+        pushDB(sql, Hash, readingNo);
     }
 
 #endif
-    hash.clear();
-
+    std::fill(Hash.begin(), Hash.end(), std::string());
+    std::fill(uHash.begin(), uHash.end(), std::string());
 }
 
 #include "node.h"
