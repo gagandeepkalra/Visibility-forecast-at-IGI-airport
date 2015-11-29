@@ -215,10 +215,11 @@ int main(int argc, char *argv[]) {
                 abort();
             }
 
-            string field;
-            int ctr = 0;
+            std::string field;
+            fieldList.push_back(0);
+            int ctr = 1;
             while(fieldListFile.good()) {
-                bool wanted; string field;
+                bool wanted; std::string field;
                 fieldListFile>>wanted;
                 
                 std::getline(fieldListFile, field, '"'); //discard spaces

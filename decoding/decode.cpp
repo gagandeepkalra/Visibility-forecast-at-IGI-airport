@@ -368,11 +368,14 @@ static void _2sTTT_29UUU_1(std::string &w)
 {
     int TTT = toDigit(w[2])*10 + toDigit(w[3]) + toDigit(w[4])/10.0;
 
-    if(w[1] == '1' || w[1] == '0') {
+    if(w[1] == '1') {
         uHash[DEWPOINT_C] = std::to_string(-TTT);
         Hash[DEWPOINT_C] =  std::to_string(-TTT);
+    } else if(w[1] == '0') {
+        uHash[DEWPOINT_C] = std::to_string(TTT);
+        Hash[DEWPOINT_C] =  std::to_string(TTT);
     } else if(w[1] == '9') {
-        uHash[RELATIVE_HUMIDITY_PERC] = std::to_string(-TTT);
+        uHash[RELATIVE_HUMIDITY_PERC] = std::to_string(TTT * 10);
         Hash[RELATIVE_HUMIDITY_PERC] =  std::to_string(TTT * 10);
     }
 }
@@ -382,8 +385,8 @@ static void _3PPPP_1(std::string &w)
     float PPPP = toDigit(w[1])*100 + toDigit(w[2])*10 + toDigit(w[3]) + toDigit(w[4])/10.0;
 
     //todo: unit is not clear, and decoding is not correct
-    if(w[1] == '1')
-        PPPP = PPPP/1000.0;
+    if(w[1] < '8')
+        PPPP = PPPP + 1000.0;
 
     uHash[STATION_PRESSURE_HPA] = std::to_string(PPPP);
     Hash[STATION_PRESSURE_HPA] = std::to_string(PPPP);
@@ -391,11 +394,11 @@ static void _3PPPP_1(std::string &w)
 
 static void _4PPPP_1(std::string &w)
 {
-    float PPPP = toDigit(w[1])*100 + toDigit(w[2])*10 + toDigit(w[3]) + toDigit(w[4])/10;
+    float PPPP = toDigit(w[1])*100 + toDigit(w[2])*10 + toDigit(w[3]) + toDigit(w[4])/10.0;
 
     //todo: unit is not clear, and decoding is not correct
-    if(w[1] == '1')
-        PPPP /= 1000;
+    if(w[1] < '8')
+        PPPP = PPPP + 1000.0;
 
     //todo: check the unit
     uHash[SEA_LEVEL_PRESSURE_MB] = std::to_string(PPPP);

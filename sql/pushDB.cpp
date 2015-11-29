@@ -3,23 +3,21 @@
 #include <ostream>
 #include <unordered_map>
 #include "sqlSession.h"
-
-int getValInt(const std::unordered_map<std::string, std::string> &hash, const std::string key, const int defaultValue = -99)
+#include "../decoding/parameters.h"
+int getValInt(const std::vector<std::string> &refHash, const int fieldPos, const int defaultValue = -99)
 {
-    auto it = hash.find(key);
-
-    if(it == hash.end())
+    if(refHash[fieldPos].empty() )
         return defaultValue;
 
     try {
-        return std::stoi(it->second);
+        return std::stoi(refHash[fieldPos]);
     } catch(std::exception &e) {
-        std::cerr << "Sql error: error converting string to int. ["<<key<<"] = "<<it->second<<'\n';
+        std::cerr << "Sql error: error converting string to int. ["<<fieldPos<<"] = "<<refHash[fieldPos]<<'\n';
         return defaultValue;
     }
 }
 
-void pushDB(soci::session *sql, std::unordered_map<std::string, std::string> &hash, int readingNo)
+void pushDB(soci::session * const sql, const std::vector<std::string> &hash, const int readingNo)
 {
     if(sql == NULL) {
         std::cerr << "sql error: in function pushDB, sql session is null \n";
@@ -28,24 +26,24 @@ void pushDB(soci::session *sql, std::unordered_map<std::string, std::string> &ha
 
     try {
         //only some of the fields have been used, for now
-        int stncode = getValInt(hash, "station code");
-        int day = getValInt(hash, "day");
-        int month = getValInt(hash, "month");
-        int year = getValInt(hash, "year");
+        int stncode = getValInt(hash, STATION_CODE);
+        int day = getValInt(hash, DAY);
+        int month = getValInt(hash, MONTH);
+        int year = getValInt(hash, YEAR);
         std::string date = std::to_string(day) + "/" + std::to_string(month) + "/" + std::to_string(year);
-        int nearest_hour = getValInt(hash, "nearest hour");
-        int visibility = getValInt(hash, "Visibility (km)");
-        int wind_direction = getValInt(hash, "wind direction");
-        int surface_wind_speed = getValInt(hash, "surface wind speed");
-        int wind_speed_indicator = getValInt(hash, "wind indicator dig");
-        int temperature = getValInt(hash, "temperature (C)");
-        int dewpoint = getValInt(hash, "dewpoint (C)");
-        int station_pressure = getValInt(hash, "station pressure (hPa)");
+        int nearest_hour = getValInt(hash, NEAREST_HOUR);
+        int visibility = getValInt(hash, VISIBILITY_KM);
+        int wind_direction = getValInt(hash, WIND_DIRECTION);
+        int surface_wind_speed = getValInt(hash, SURFACE_WIND_SPEED);
+        int wind_speed_indicator = getValInt(hash, WIND_INDICATOR);
+        int temperature = getValInt(hash, TEMPERATURE_C);
+        int dewpoint = getValInt(hash, DEWPOINT_C);
+        int station_pressure = getValInt(hash, STATION_PRESSURE_HPA);
         //add a -99.9 function if value does not exists
-        int sea_level_pressure = getValInt(hash, "sea level pressure (hPa)");
-        int liquid_precipitation_amount_Sec_1 = getValInt(hash, "liquid precipitation amount Sec 1(mm)");
-        int liquid_precipitation_amount_Sec_2 = getValInt(hash, "liquid precipitation amount Sec 2 (mm)");
-        int precipitation_duration_Sec_2 = getValInt(hash, "precipitation duration Sec 2 (hr)");
+        int sea_level_pressure = getValInt(hash, SEA_LEVEL_PRESSURE_MB);
+        int liquid_precipitation_amount_Sec_1 = getValInt(hash, LIQUID_PRECIPITATION_AMOUNT_SEC_1_MM);
+        int liquid_precipitation_amount_Sec_2 = getValInt(hash, LIQUID_PRECIPITATION_AMOUNT_SEC_2MM);
+        int precipitation_duration_Sec_2 = getValInt(hash, PRECIPITATION_DURATION_SEC_2_HR);
 
         // *INDENT-OFF*
         (*sql)<<"INSERT INTO `data` ("

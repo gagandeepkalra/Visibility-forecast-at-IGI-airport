@@ -20,7 +20,6 @@ WIND_INDICATOR,
 PRECIPITATION_INDICATOR,
 STATION_TYPE,
 CLOUD_BASE_OF_LOWEST_CLOUD_SEEN_M,
-VISIBILITY_KM,
 CLOUD_COVER,
 WIND_DIRECTION,
 SURFACE_WIND_SPEED,
@@ -54,7 +53,8 @@ _24_HR_PRECIPITATION_MM,
 CLOUD_COVERAGE_OF_LAYER,
 GENUS_OF_CLOUD,
 HEIGHT_OF_CLOUD_BASE,
-SPECIAL_PHENOMENA_GROUP
+SPECIAL_PHENOMENA_GROUP,
+VISIBILITY_KM
 };
 
 const std::vector<std::string> csvHeader{
@@ -70,7 +70,6 @@ const std::vector<std::string> csvHeader{
 "precipitation indicator",
 "station type",
 "cloud base of lowest cloud seen (m)",
-"visibility (km)",
 "cloud cover",
 "wind direction",
 "surface wind speed",
@@ -104,7 +103,8 @@ const std::vector<std::string> csvHeader{
 "cloud coverage of layer",
 "genus of cloud",
 "height of cloud base",
-"Special Phenomena Group"
+"Special Phenomena Group",
+"visibility (km)"
 };
 
 #endif

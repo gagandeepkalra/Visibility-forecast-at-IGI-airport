@@ -13,6 +13,9 @@ catAllCSV=1
 # =1 enables collecting cat csv in separate file for each station. to separate, the first column of csv should be station code
 separateFilePerStation=1
 
+# =1 removes station code from csv file if separateFilePerStation=1 note:it is assumed that first column will be always of station code
+removeStnCode=1
+
 #enable sorting according to station code
 sort=1
 
@@ -83,15 +86,20 @@ fi
 if [ $separateFilePerStation -eq 1 -a $catAllCSV -eq 1 ] ;then
     while IFS='' read -r line || [[ -n "$line" ]]; do
         stnCode=$(echo "$line" | cut -d, -f1 | sed s/"\""/""/g )
+        if [ $removeStnCode -eq 1 ] ;then
+            line=$(echo "$line" | cut -d, -f2-)
+        fi
         echo "$line" >> "$outputDir/$stnCode.csv"
+        
     done < "$outputDir/$outFileName"
     
     rm "$outputDir/$outFileName"
     
     if [ $enableHeader -eq 1 ] ;then
+        tempHeader=$(echo "$csvHeader" | cut -d, -f2-)
         files=$(ls $outputDir | grep ".csv")
         for x in $files ;do
-            echo -e "$csvHeader\n$(cat $outputDir/$x)" > $outputDir/$x
+            echo -e "$tempHeader\n$(cat $outputDir/$x)" > $outputDir/$x
         done
     fi
 fi
