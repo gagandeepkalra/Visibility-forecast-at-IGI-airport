@@ -1786,16 +1786,20 @@ void section5(char *l)
 
 }
 
+static bool firstTime = true;
+int readingNo = -1;
+
 static std::string getVal(const std::vector<std::string> &refHash, int fieldPos, const int defaultValue = -99)
 {
+    if(fieldPos == READING_NO)
+        return std::to_string(readingNo);
+    
     if(refHash[fieldPos].empty() )
         return std::to_string(defaultValue);
     
     return refHash[fieldPos];
 }
 
-static bool firstTime = true;
-int readingNo = -1;
 void decode()
 {    
     if(decodeError) {

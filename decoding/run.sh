@@ -51,6 +51,9 @@ csvDir="../Input-Output/CSV"
 fieldListFile="fieldListFile.txt"
 stationListFile="stationListFile.txt"
 
+#file where stderror will be redirected
+stderror="/dev/null"
+
 rm -Rf "../Input-Output/catCSV/"
 
 # check for existence of sqlDetails.config file
@@ -80,7 +83,10 @@ source sqlDetails.config
 #clean dirs
 rm -R -f $sectionsDir/* $csvDir/*
 mkdir -p $sectionsDir $csvDir
-rm -f stderror
+
+if [ "$stderror" != "/dev/null" ] ;then
+    rm -f "$stderror"
+fi
 
 
 dateDirs=$(ls -v $initialInputDir)
@@ -90,28 +96,28 @@ for currDate in $dateDirs; do
     readingNo=0
     echo "bash: running for: $currDate"
     for x in $fileList; do
-        echo $currDate/$x >>stderror
+        echo $currDate/$x >>"$stderror"
         
         mkdir -p "$sectionsDir/$currDate" "$csvDir/$currDate"
         if [ $enableSQL -eq 1 ] ;then
             if [ $enableVerbose -eq 1 ] ;then
-                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --verbose --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --verbose --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>"$stderror"
             else
-                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>"$stderror"
             fi #enableVerbose
         else
             if [ $enableVerbose -eq 1 ] ;then
-                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --verbose < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --verbose < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>"$stderror"
             else
-                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>stderror
+                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>"$stderror"
             fi #enableVerbose
         fi #enableSQL
         
         #if program did not terminate successfully, echo message
         if [ $? -ne 0 ] ;then
-            echo "failed for $currDate/$x" >>stderror
+            echo "failed for $currDate/$x" >>"$stderror"
         fi
-        echo "" >>stderror
+        echo "" >>"$stderror"
         readingNo=$((readingNo + 1))
     done;
 done;

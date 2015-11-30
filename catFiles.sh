@@ -10,6 +10,7 @@ rm -Rf ./Input-Output/AfterCat && mkdir -p ./Input-Output/AfterCat #create dir t
 dirs=$(ls "./Input-Output/IMD_input")
 
 for date in $dirs ;do
+    echo "bash: running for: $date"
     i=0
     mkdir -p "./Input-Output/AfterCat/$date" #create corresponding date folder to store that days entries
     while [ $i -le 47 ] ;do

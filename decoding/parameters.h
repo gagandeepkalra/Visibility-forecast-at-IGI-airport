@@ -5,7 +5,7 @@
 
 //note: if you do any change in the order of field names in enum, then make sure that same change is done in csvHeader and vice-versa
 
-const int totalFields = 47;
+const int totalFields = 48;
 
 enum {
 STATION_CODE,
@@ -15,6 +15,7 @@ STATION_LATITUDE,
 DAY,
 MONTH,
 YEAR,
+READING_NO,
 NEAREST_HOUR,
 WIND_INDICATOR,
 PRECIPITATION_INDICATOR,
@@ -65,6 +66,7 @@ const std::vector<std::string> csvHeader{
 "day",
 "month",
 "year",
+"reading no",
 "nearest hour",
 "wind indicator",
 "precipitation indicator",
