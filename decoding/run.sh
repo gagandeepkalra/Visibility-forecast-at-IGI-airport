@@ -34,7 +34,7 @@
 catCSV=1
 
 #enableSQL=0 disables pushing decodings to database, enableSQL=1 enables it
-enableSQL=0
+enableSQL=1
 
 # =1 enables printing verbose field value
 enableVerbose=0

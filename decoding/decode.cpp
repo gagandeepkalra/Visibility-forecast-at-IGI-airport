@@ -1331,10 +1331,10 @@ void section0(char *l)
     }
 
     int nearestHour = toDigit(gmtTime[2])*10 + toDigit(gmtTime[3]);
-    uHash[NEAREST_HOUR] = std::to_string(gmtTime[2]).append(1, gmtTime[3]);
+    uHash[NEAREST_HOUR] = std::to_string(gmtTime[2] - '0').append(1, gmtTime[3]);
 
     int windIndicator = toDigit(gmtTime[4]);
-    uHash[WIND_INDICATOR] = std::to_string(gmtTime[4]);
+    uHash[WIND_INDICATOR] = std::to_string(gmtTime[4] - '0');
     
     std::string windIndicatorStr;
     switch (windIndicator) {

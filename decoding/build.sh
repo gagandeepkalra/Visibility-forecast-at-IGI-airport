@@ -7,7 +7,7 @@
 debug=0
 
 # enableSQL=0 disables sql support, enableSQL=1 enables sql support
-enableSQL=0
+enableSQL=1
 
 #tests
 if [ ! -e yacc.y ] ;then
