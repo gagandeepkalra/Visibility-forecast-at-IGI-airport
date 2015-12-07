@@ -60,8 +60,8 @@ rm -Rf "../Input-Output/catCSV/"
 if [ ! -e ./a.out ] ;then
     echo "bash: ./a.out not found. run ./build.sh first"
     exit 1    
-elif [ ! -e "sqlDetails.config" ] ;then
-    echo "bash: sqlDetails.config not found"
+elif [ ! -e "../sqlDetails.config" ] ;then
+    echo "bash: ../sqlDetails.config not found"
     exit 1
 elif [ ! -e "fieldListFile.txt" ] ;then
     echo "bash: fieldListFile.txt not found"
@@ -78,7 +78,7 @@ elif [ ! -e "catCSV.sh" ] ;then
 fi
 
 #read config
-source sqlDetails.config
+source ../sqlDetails.config
 
 #clean dirs
 rm -R -f $sectionsDir/* $csvDir/*

@@ -17,7 +17,7 @@ double getValDouble(const std::vector<std::string> &refHash, const int fieldPos,
     }
 }
 
-void pushDB(soci::session * const sql, const std::vector<std::string> &hash, const int readingNo)
+void pushDB(soci::session *const sql, const std::vector<std::string> &hash, const int readingNo)
 {
     if(sql == NULL) {
         std::cerr << "sql error: in function pushDB, sql session is null \n";

@@ -3,7 +3,7 @@
 # add  following line to compilation command to enable sql support
 # -DSQL -I/usr/local/include/soci -lsoci_core -lsoci_mysql `mysql_config --cflags --libs` 
 
-enableSQL=0
+enableSQL=1
 
 if [ ! -e "../stationData.cpp" ] ;then
     echo "bash: stationData.cpp not present";
