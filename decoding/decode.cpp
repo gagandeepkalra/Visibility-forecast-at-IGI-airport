@@ -1809,8 +1809,8 @@ void decode()
 
     int currCode = stoi(getVal(Hash, STATION_CODE));
 
-    for(int j = 0; j<stationList.size(); ++j)
-        if(currCode == stationList[j]) { //if curr station code is among required ones
+    for(auto it = stationList.begin(); it != stationList.end(); ++it)
+        if(currCode == *it) { //if curr station code is among required ones
 
             if(firstTime) {//print csv header
                 firstTime = false;
@@ -1834,16 +1834,16 @@ void decode()
                     std::cout<<'"'<<getVal(Hash, fieldList[ fieldList.size()-1])<<"\"\n";
                 else
                     std::cout<<'"'<<getVal(uHash, fieldList[ fieldList.size()-1])<<"\"\n";
+                
+            
+#ifdef SQL
+            if(toDB) {
+                soci::session *sql= SQLSession::getSession(&sqldbname, &sqlusername, &sqlpassword);
+                pushDB(sql, Hash, readingNo);
+            }
+#endif
         } //if(currCode == stationList[j])
 
-#ifdef SQL
-
-    if(toDB) {
-        soci::session *sql= SQLSession::getSession(&sqldbname, &sqlusername, &sqlpassword);
-        pushDB(sql, Hash, readingNo);
-    }
-
-#endif
     std::fill(Hash.begin(), Hash.end(), std::string());
     std::fill(uHash.begin(), uHash.end(), std::string());
 }

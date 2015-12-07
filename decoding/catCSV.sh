@@ -11,13 +11,13 @@
 catAllCSV=1
 
 # =1 enables collecting cat csv in separate file for each station. to separate, the first column of csv should be station code
-separateFilePerStation=0
+separateFilePerStation=1
 
 # =1 removes station code from csv file if separateFilePerStation=1 note:it is assumed that first column will be always of station code
 removeStnCode=1
 
 #enable sorting according to station code
-sort=1
+sort=0
 
 #enables field header in csv files
 enableHeader=1
