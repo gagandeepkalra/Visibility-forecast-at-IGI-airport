@@ -9,6 +9,7 @@
     #include <iomanip>
     #include <string.h>
     #include <fstream>
+    #include <unordered_set>
     #include "parameters.h"
     
     //todo: int ex
@@ -134,7 +135,7 @@ extern std::vector<std::string> Hash;
 extern std::vector<std::string> uHash;
 extern int verboseFlag;
 extern std::vector<int> fieldList; //list of index of the fields that are required
-extern std::vector<int> stationList;
+extern std::unordered_set<int> stationList;
 extern int readingNo;
 extern char *explicitDateStrYYYYMMDD;
 //extern int yy_flex_debug;
@@ -248,7 +249,7 @@ int main(int argc, char *argv[]) {
                 stationListFile>>wanted>>station;
                 
                 if(wanted) {
-                    stationList.push_back(station);
+                    stationList.insert(station);
                     //std::cerr <<"station wanted: "<<station;
                 }
             }            

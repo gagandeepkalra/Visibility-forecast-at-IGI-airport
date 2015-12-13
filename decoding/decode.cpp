@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <unordered_map>
+#include <unordered_set>
 #include "stationData.h"
 #include "parameters.h"
 #include <sstream>
@@ -23,7 +23,7 @@
 
 int verboseFlag = false;
 std::vector<int> fieldList;
-std::vector<int> stationList;
+std::unordered_set<int> stationList;
 char *explicitDateStrYYYYMMDD = NULL;
 
 //stores all verbose data required to be printed
@@ -1828,45 +1828,39 @@ void decode()
         return;
     }
 
-    int currCode = stoi(getVal(Hash, STATION_CODE));
+    if(firstTime) {//print csv header
+        firstTime = false;
 
-    for(auto it = stationList.begin(); it != stationList.end(); ++it)
-        if(currCode == *it) { //if curr station code is among required ones
+        for(int i = 0; i<fieldList.size()-1; ++i)
+            std::cout<<'"'<<csvHeader[ fieldList[i]]<<"\",";
 
-            if(firstTime) {//print csv header
-                firstTime = false;
+        std::cout<<'"'<<csvHeader[ fieldList[fieldList.size()-1]]<<"\"\n";
 
-                for(int i = 0; i<fieldList.size()-1; ++i)
-                    std::cout<<'"'<<csvHeader[ fieldList[i]]<<"\",";
+    }//first time
 
-                std::cout<<'"'<<csvHeader[ fieldList[fieldList.size()-1]]<<"\"\n";
+    for(int i = 0; i<fieldList.size()-1; ++i) {
+        std::string temp = getVal(uHash, fieldList[i]);
 
-            }//first time
+        if(verboseFlag)
+            std::cout<<'"'<<getVal(Hash, fieldList[i])<<"\",";
+        else
+            std::cout<<'"'<<getVal(uHash, fieldList[i])<<"\",";
+    }
 
-            for(int i = 0; i<fieldList.size()-1; ++i) {
-                std::string temp = getVal(uHash, fieldList[i]);
-
-                if(verboseFlag)
-                    std::cout<<'"'<<getVal(Hash, fieldList[i])<<"\",";
-                else
-                    std::cout<<'"'<<getVal(uHash, fieldList[i])<<"\",";
-            }
-
-            if(verboseFlag)
-                std::cout<<'"'<<getVal(Hash, fieldList[ fieldList.size()-1])<<"\"\n";
-            else
-                std::cout<<'"'<<getVal(uHash, fieldList[ fieldList.size()-1])<<"\"\n";
+    if(verboseFlag)
+        std::cout<<'"'<<getVal(Hash, fieldList[ fieldList.size()-1])<<"\"\n";
+    else
+        std::cout<<'"'<<getVal(uHash, fieldList[ fieldList.size()-1])<<"\"\n";
 
 
 #ifdef SQL
 
-            if(toDB) {
-                soci::session *sql= SQLSession::getSession(&sqldbname, &sqlusername, &sqlpassword);
-                pushDB(sql, Hash, readingNo);
-            }
+    if(toDB) {
+        soci::session *sql= SQLSession::getSession(&sqldbname, &sqlusername, &sqlpassword);
+        pushDB(sql, Hash, readingNo);
+    }
 
 #endif
-        } //if(currCode == stationList[j])
 
     std::fill(Hash.begin(), Hash.end(), std::string());
     std::fill(uHash.begin(), uHash.end(), std::string());
@@ -1892,9 +1886,19 @@ void printBlock(char *heading, char *sec0, SecList *list)
             if(n->s[i])
                 switch(i) {
                 case 1:
+                {
                     section1(n->s[i]);
+                    
+                    int currCode = stoi(getVal(Hash, STATION_CODE));
+                    if(stationList.find(currCode) == stationList.end() ) { //if curr station is  not required, skip decoding process entirely
+                        decodeError = false;
+                        std::fill(Hash.begin(), Hash.end(), std::string());
+                        std::fill(uHash.begin(), uHash.end(), std::string());
+                        return;
+                    }
+                    
                     break;
-
+                }
                 case 2:
                     section2(n->s[i]);
                     break;
