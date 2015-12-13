@@ -90,11 +90,14 @@ fi
 
 
 dateDirs=$(ls -v $initialInputDir)
+totalFiles=$( echo "$dateDirs" | wc -w )
+currentFileNo=1
 
 for currDate in $dateDirs; do
     fileList=$(ls -v $initialInputDir/$currDate)
     readingNo=0
-    echo "bash: running for: $currDate"
+    echo "($currentFileNo/$totalFiles)bash: running for: $currDate"
+    currentFileNo=$((currentFileNo+1))
     for x in $fileList; do
         echo $currDate/$x >>"$stderror"
         

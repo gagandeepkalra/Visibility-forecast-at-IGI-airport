@@ -8,9 +8,12 @@
 
 rm -Rf ./Input-Output/AfterCat && mkdir -p ./Input-Output/AfterCat #create dir that will store final catOutput
 dirs=$(ls "./Input-Output/IMD_input")
+totalFiles=$( echo "$dirs" | wc -w )
+currentFileNo=1
 
 for date in $dirs ;do
-    echo "bash: running for: $date"
+    echo "($currentFileNo/$totalFiles)bash: running for: $date"
+    currentFileNo=$((currentFileNo+1))
     i=0
     mkdir -p "./Input-Output/AfterCat/$date" #create corresponding date folder to store that days entries
     while [ $i -le 47 ] ;do
