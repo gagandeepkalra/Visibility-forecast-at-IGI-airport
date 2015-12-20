@@ -31,28 +31,20 @@ fi
 
 if [ $debug -ne 0 ] ;then
     bison -d --graph --debug yacc.y && #ALSO UNCOMMENT yydebug = 1; IN yacc.y
-    flex -d lex.l
-    
-    if [ $enableSQL -eq 1 ] ;then
-        c++ lex.yy.c yacc.tab.c decode.cpp stationData.cpp ../sql/pushDB.cpp ../sql/sqlSession.cpp -std=c++11 -DSQL -I/usr/local/include/soci -lsoci_core -lsoci_mysql `mysql_config --cflags --libs`
-    else
-        c++ lex.yy.c yacc.tab.c decode.cpp stationData.cpp -std=c++11
-    fi
-    
-    dot -Tjpeg yacc.dot -o parser.jpeg &&
-    sync &&
-    rm lex.yy.c yacc.tab.c yacc.tab.h &&
-    echo "debugging enabled. build complete" || echo "build failed"
+    flex -d lex.l &&    
+    dot -Tjpeg yacc.dot -o parser.jpeg &&    
+    echo "debugging enabled." ||
+    echo "build failed"
 else #debugging off
     bison -d yacc.y &&
-    flex lex.l
-    
-    if [ $enableSQL -eq 1 ] ;then
-        c++ lex.yy.c yacc.tab.c decode.cpp stationData.cpp ../sql/pushDB.cpp ../sql/sqlSession.cpp -std=c++11 -DSQL -I/usr/local/include/soci -lsoci_core -lsoci_mysql `mysql_config --cflags --libs`
-    else
-        c++ lex.yy.c yacc.tab.c decode.cpp stationData.cpp -std=c++11
-    fi
-    
-    sync &&
-    rm lex.yy.c yacc.tab.c yacc.tab.h || echo "build failed"
+    flex lex.l ||
+    echo "build failed"
 fi
+
+if [ $enableSQL -eq 1 ] ;then
+    c++ lex.yy.c yacc.tab.c decode.cpp stationData.cpp -std=c++11 ../sql/pushDB.cpp ../sql/sqlSession.cpp  -DSQL -I/usr/local/include/soci -lsoci_core -lsoci_mysql `mysql_config --cflags --libs`
+else
+    c++ lex.yy.c yacc.tab.c decode.cpp stationData.cpp -std=c++11
+fi
+
+rm lex.yy.c yacc.tab.c yacc.tab.h 

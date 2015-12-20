@@ -22,9 +22,6 @@ sort=0
 #enables field header in csv files
 enableHeader=1
 
-#normalize the columns x = (x - min(x) )/( max(x) - min(x))
-normalize=0
-
 outputDir="../Input-Output/catCSV"
 initialInputDir="../Input-Output/CSV"
 outFileName="DEMS.csv"
@@ -103,13 +100,6 @@ if [ $separateFilePerStation -eq 1 -a $catAllCSV -eq 1 ] ;then
         files=$(ls $outputDir | grep ".csv")
         for x in $files ;do                             #remove rows having -99 (unknown values) todo:remove later
             echo -e "$tempHeader\n$(cat $outputDir/$x | sed '/-99/d' | uniq)" > $outputDir/$x
-        done
-    fi
-    
-    if [ $normalize -eq 1 ] ;then
-        files=$(ls $outputDir | grep ".csv")
-        for x in $files ;do
-            echo $(echo "$outputDir/$x" | python3 normalizeCSV.py) > "$outputDir/$x"
         done
     fi
 fi

@@ -63,14 +63,15 @@ int main(int argc, char *argv[])
 
         soci::rowset<soci::row> rs = ((*sql).prepare <<
                                       "SELECT "
-                                      "c.station_code, "
-                                      "c.date, "
-                                      "c.reading_no, "
+                                      "DISTINCTROW "
+                                      //"c.station_code, "
+                                      //"c.date, "
+                                      //"c.reading_no, "
                                       "c.`temperature_(C)`, "
                                       "c.cloud_cover, "
-                                      "c.wind_direction, "
-                                      "c.surface_wind_speed, "
-                                      "c.`sea_level_pressure_(mb)` - p.`sea_level_pressure_(mb)` AS dmslp, "
+                                      //"c.wind_direction, "
+                                      //"c.surface_wind_speed, "
+                                      "c.`sea_level_pressure_(mb)` AS mslp, "
                                       "c.`dewpoint_(C)`, "
                                       "c.`visibility_(km)` "
                                       "FROM "
@@ -89,19 +90,21 @@ int main(int argc, char *argv[])
                                       "AND c.date = DATE_ADD(p.date, INTERVAL 1 DAY) "
                                       "AND c.`reading_no` = p.`reading_no`AND "
                                       "c.`temperature_(C)` <> -99 AND "
-                                      "c.cloud_cover <> -99 AND "
-                                      "c.wind_direction <> -99 AND "
-                                      "c.surface_wind_speed <> -99 AND "
+                                      "c.`cloud_cover` <> -99 AND "
+                                      "c.`wind_direction` <> -99 AND "
+                                      "c.`surface_wind_speed` <> -99 AND "
                                       "c.`sea_level_pressure_(mb)` <> -99 AND "
                                       "c.`dewpoint_(C)` <> -99 AND "
-                                      "c.`visibility_(km)` <> -99 ");
+                                      "c.`visibility_(km)` <> -99 "
+                                      "ORDER BY RAND()"
+                                     );
 
         bool firstTime = true;
 
         for (soci::rowset<soci::row>::const_iterator it = rs.begin(); it != rs.end(); ++it) {
             soci::row const &row = *it;
 
-            const int rowSize = row.size();
+            const std::size_t rowSize = row.size();
 
             for(std::size_t i = 0; i != rowSize; ++i) {
                 const soci::column_properties &props = row.get_properties(i);

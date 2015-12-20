@@ -102,19 +102,16 @@ for currDate in $dateDirs; do
         echo $currDate/$x >>"$stderror"
         
         mkdir -p "$sectionsDir/$currDate" "$csvDir/$currDate"
+        flag="--readingNo=$readingNo --fieldListFile=$fieldListFile --stationListFile=$stationListFile --sectionFile=$sectionsDir/$currDate/$x --date=$currDate"
         if [ $enableSQL -eq 1 ] ;then
-            if [ $enableVerbose -eq 1 ] ;then
-                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --verbose --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>"$stderror"
-            else
-                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>"$stderror"
-            fi #enableVerbose
-        else
-            if [ $enableVerbose -eq 1 ] ;then
-                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate --verbose < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>"$stderror"
-            else
-                ./a.out --readingNo=$readingNo --fieldListFile="$fieldListFile" --stationListFile=$stationListFile --sectionFile="$sectionsDir/$currDate/$x" --date=$currDate < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>"$stderror"
-            fi #enableVerbose
-        fi #enableSQL
+            flag="$flag --sqlusername=$sqlusername --sqlpassword=$sqlpassword --sqldbname=$sqldbname --toDB"
+        fi
+        
+        if [ $enableVerbose -eq 1 ] ;then
+            flag="$flag --verbose"
+        fi #enableVerbose
+        
+        ./a.out $flag < "$initialInputDir/$currDate/$x" > "$csvDir/$currDate/$x.csv" 2>>"$stderror"
         
         #if program did not terminate successfully, echo message
         if [ $? -ne 0 ] ;then

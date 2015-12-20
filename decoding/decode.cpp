@@ -1885,20 +1885,21 @@ void printBlock(char *heading, char *sec0, SecList *list)
         for(int i = 0; i<6; ++i) {
             if(n->s[i])
                 switch(i) {
-                case 1:
-                {
+                case 1: {
                     section1(n->s[i]);
-                    
+
                     int currCode = stoi(getVal(Hash, STATION_CODE));
+
                     if(stationList.find(currCode) == stationList.end() ) { //if curr station is  not required, skip decoding process entirely
                         decodeError = false;
                         std::fill(Hash.begin(), Hash.end(), std::string());
                         std::fill(uHash.begin(), uHash.end(), std::string());
                         return;
                     }
-                    
+
                     break;
                 }
+
                 case 2:
                     section2(n->s[i]);
                     break;
