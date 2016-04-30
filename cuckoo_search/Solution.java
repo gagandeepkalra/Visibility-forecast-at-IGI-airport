@@ -14,20 +14,23 @@ import java.util.Random;
  */
 public class Solution implements Comparable<Solution> {
 
-    private ArrayList<Double> weights;
+    double[] weights;
     private Fitness fitness;
 
     public Solution(int noOfWeights, Fitness fitness) {
-        weights = new ArrayList<>(noOfWeights);
+        weights = new double[noOfWeights];
         this.fitness = fitness;
         Random rand = new Random();
-        for (int i = 0; i < weights.size(); ++i) {
-            this.weights.set(i, rand.nextDouble());
+        for (int i = 0; i < weights.length; ++i) {
+            this.weights[i] = rand.nextDouble();
         }
     }
 
     public Solution(Solution s) {
-        this.weights = new ArrayList<>(s.weights);
+        this.weights = new double[s.weights.length];
+        for (int i = 0; i < this.weights.length; ++i) {
+            this.weights[i] = s.weights[i];
+        }
         this.fitness = s.fitness;
     }
 
@@ -38,7 +41,7 @@ public class Solution implements Comparable<Solution> {
     }
 
     public int noOfWeights() {
-        return weights.size();
+        return weights.length;
     }
 
     @Override

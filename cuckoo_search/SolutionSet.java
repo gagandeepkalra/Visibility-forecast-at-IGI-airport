@@ -19,8 +19,10 @@ public class SolutionSet {
 
     public SolutionSet(int noOfSolutions, Solution solution) {
         solutions = new ArrayList<>();
+        int noOfWeights = solution.noOfWeights();
+        Fitness fitness = solution.fitness();
         for (int i = 0; i < noOfSolutions; ++i) {
-            solutions.add(new Solution(solution.noOfWeights(), solution.fitness()));
+            solutions.add(new Solution(noOfWeights, fitness));
         }
     }
 

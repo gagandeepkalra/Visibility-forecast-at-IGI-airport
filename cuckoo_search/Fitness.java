@@ -25,11 +25,12 @@ public class Fitness {
 
     public double getFitness(Solution s) {
         double error = 0;
+        mlp.setWeights(s.weights);
         for (DataSetRow row : testSet.getRows()) {
-            double[] in = row.getInput();
             mlp.setInput(row.getInput());
             mlp.calculate();
 
+            double[] in = row.getInput();
             double[] out = mlp.getOutput();
             for (int i = 1; i < out.length; ++i) {
                 error += out[i] - in[i];
