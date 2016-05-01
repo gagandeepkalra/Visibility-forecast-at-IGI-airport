@@ -34,9 +34,22 @@ public class Solution implements Comparable<Solution> {
         this.fitness = s.fitness;
     }
 
-    public Solution randomWalk() {
+    public Solution randomWalk() {//we have to evolve the best solution in a generation(not any random).
         Solution result = new Solution(this);
-
+        int n = result.noOfWeights();
+        double beta = 1.5, sigma=0.0;
+        sigma=(Gamma.gamma(1+beta)*Math.sin(Math.PI*beta/2.0)/(Gamma.gamma((1+beta)/2.0)*beta*Math.pow(2.0,(beta-1)/2.0) ))^(1.0/beta);
+        
+        Random rand = new Random();
+        double u = new double[n], v=new double[n], step=new double[n];
+        
+        for(int i=0; i<n; ++i)
+        {
+            u[i]=rand.nextDouble()*sigma;
+            v[i]=rand.nextDouble();
+            step[i]=u[i]/Math.pow(Math.abs(v[i]), 1.0/beta);
+            weights[i]=weights[i]+step[i]*rand.nextDouble();
+        }
         return result;
     }
 
